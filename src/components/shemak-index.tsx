@@ -84,7 +84,7 @@ function SectionHeader({ section }: { section: SectionData }) {
         {SECTION_ICONS[section.id]}
       </div>
       <span className="text-sm font-bold text-gray-800">{section.label}</span>
-      <span className="text-[11px] text-gray-400">{section.description}</span>
+      <span className="text-sm font-semibold text-gray-600">{section.description}</span>
     </div>
   );
 }
