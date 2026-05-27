@@ -1,0 +1,7 @@
+node_modules
+.next
+.git
+*.md
+!README.md
+index1.png
+index2.png

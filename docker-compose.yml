@@ -1,0 +1,9 @@
+services:
+  shemak-index:
+    build: .
+    container_name: shemak-index
+    restart: unless-stopped
+    ports:
+      - "3100:3000"
+    environment:
+      - NODE_ENV=production
