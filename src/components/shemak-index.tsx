@@ -137,7 +137,11 @@ function ModuleCard({
             <li key={i}>
               <a
                 href={`/${target.file}.html${
-                  target.anchor ? `#${target.anchor}` : ""
+                  target.anchor
+                    ? target.file.startsWith("pan-")
+                      ? `?sec=${target.anchor}`
+                      : `#${target.anchor}`
+                    : ""
                 }`}
                 className={cn(liClass, "hover:underline")}
               >
