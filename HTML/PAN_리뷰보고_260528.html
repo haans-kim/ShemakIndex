@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>Pan HR 리뷰 보고 · 2026-05-28</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Geist','Malgun Gothic',Arial,sans-serif;background:#0b1220;color:#1f2937;overflow:hidden}
+.viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.stage{width:1280px;height:720px;position:relative;background:#fff;transform-origin:center center;
+        box-shadow:0 24px 90px rgba(0,0,0,.6);border-radius:10px;overflow:hidden}
+.slide{position:absolute;inset:0;display:none}
+.slide.active{display:grid;grid-template-rows:auto minmax(0,1fr) auto}
+.slide.cover.active{display:block}
+/* 헤더밴드 / 푸터 */
+.shead{background:linear-gradient(115deg,#0f766e,#155e63);color:#fff;padding:17px 38px;display:flex;align-items:center;justify-content:space-between}
+.shead .ttl{font-size:23px;font-weight:700;display:flex;align-items:center;gap:11px;letter-spacing:-.3px}
+.shead .ttl .sm{font-size:13px;font-weight:400;opacity:.82}
+.shead .chip{font-size:12px;background:rgba(255,255,255,.22);border-radius:6px;padding:3px 11px;font-weight:700}
+.shead .chip.navy{background:rgba(255,255,255,.3)}
+.shead .pg{font-size:14px;opacity:.9;font-weight:700;letter-spacing:1px}
+.sbody{padding:22px 38px;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:13px}
+.sfoot{padding:9px 38px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#94a3b8;border-top:1px solid #eef0f2}
+.sfoot b{color:#0f766e}
+/* 컴포넌트 */
+.lead{font-size:14px;color:#374151;padding:11px 15px;background:#f0fdfa;border-radius:10px;border-left:4px solid #0f766e;line-height:1.55}
+.flow{display:flex;align-items:stretch;gap:8px}
+.fx{flex:1;background:#f0fdfa;border:1px solid #99f6e4;border-radius:11px;padding:13px 15px;display:flex;flex-direction:column;justify-content:center}
+.fx .n{font-size:11px;color:#0f766e;font-weight:700}.fx .t{font-size:15px;font-weight:700;margin:3px 0}.fx .d{font-size:12px;color:#5b6677;line-height:1.5}
+.arr{display:flex;align-items:center;color:#0f766e;font-size:20px;font-weight:700}
+.cols{display:grid;gap:14px;flex:1;min-height:0}
+.kgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.k{border:1px solid #e5e7eb;border-radius:12px;padding:14px 16px;border-left:5px solid #0f766e;display:flex;flex-direction:column;justify-content:center}
+.k.b{border-left-color:#3b82f6}.k.g{border-left-color:#9ca3af}.k.a{border-left-color:#f59e0b}
+.k .l{font-size:12px;color:#6b7280}.k .v{font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1.1}.k .s{font-size:11px;color:#9ca3af}
+.stk{display:flex;height:40px;border-radius:9px;overflow:hidden}
+.stk div{display:flex;align-items:center;justify-content:center}.stk span{font-size:11px;color:#fff;font-weight:700;white-space:nowrap}
+.cap{font-size:12px;color:#94a3b8;line-height:1.5}
+.callout{font-size:12.5px;color:#374151;background:#f8fafc;border-left:4px solid #0f766e;border-radius:10px;padding:11px 15px;line-height:1.6}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid #eef0f2;padding:9px 12px;text-align:left;vertical-align:top;line-height:1.5}
+th{background:#f1f5f9;color:#334155;font-weight:700}
+td .ok{color:#15803d;font-weight:700}td .ds{color:#b45309;font-weight:700}
+.tbl-fill{flex:1;min-height:0;display:flex;flex-direction:column}
+.tbl-fill table{height:100%}.tbl-fill td,.tbl-fill th{vertical-align:middle}
+.mods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;flex:1;min-height:0}
+.mod{border:1px solid #e5e7eb;border-radius:14px;padding:18px;background:linear-gradient(160deg,#f8fafc,#fff);position:relative;display:flex;flex-direction:column}
+.mod.on{border:2px solid #0f766e;background:linear-gradient(160deg,#f0fdfa,#fff)}
+.mod .wm{position:absolute;top:10px;right:14px;font-size:40px;font-weight:800;color:#e2e8f0}
+.mod.on .wm{color:#99f6e4}
+.mod .id{font-size:12px;font-weight:800;color:#0f766e;letter-spacing:1px}.mod .nm{font-size:18px;font-weight:800;margin:5px 0}
+.mod .ds{font-size:12.5px;color:#5b6677;line-height:1.55;flex:1}
+.mod .badge{font-size:10px;font-weight:700;border-radius:5px;padding:3px 8px;align-self:flex-start}
+.badge.me{background:#0f766e;color:#fff}.badge.other{background:#eef2f6;color:#64748b}
+.band{background:#0f172a;color:#e5e7eb;border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:center;gap:14px;font-size:13.5px;font-weight:600}
+.band .b{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:9px;padding:8px 14px}
+.band .op{color:#5eead4;font-size:18px;font-weight:800}
+.band .res{background:#0f766e;border-color:#0f766e;color:#fff;font-weight:800}
+.dash{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.dcard{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden}
+.dcard .dt{padding:11px 15px;font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
+.dcard.m1 .dt{background:#1f2937;color:#fff}.dcard.m0 .dt{background:#0f766e;color:#fff}
+.dcard .db{padding:12px 15px;font-size:12.5px;color:#374151;line-height:1.55}
+.dcard a{color:inherit;text-decoration:none;font-size:11.5px;background:rgba(255,255,255,.22);border-radius:6px;padding:3px 10px}
+/* 표지 */
+.cover{background:radial-gradient(1200px 500px at 80% -10%,#14b8a6 0%,transparent 55%),linear-gradient(120deg,#0f766e,#1f2937);color:#fff;padding:0}
+.cover .cwrap{position:absolute;inset:0;padding:64px 70px;display:flex;flex-direction:column}
+.cover .tag{font-size:13px;background:rgba(255,255,255,.2);border-radius:7px;padding:4px 13px;font-weight:700;letter-spacing:1px;align-self:flex-start}
+.cover h1{font-size:46px;font-weight:800;margin:18px 0 12px;letter-spacing:-1px;line-height:1.12}
+.cover .sub{font-size:16px;opacity:.92}
+.cover .agenda{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:auto}
+.cover .ag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:16px 18px}
+.cover .ag .n{font-size:12px;opacity:.7;font-weight:800;letter-spacing:1.5px}
+.cover .ag .t{font-size:16px;font-weight:700;margin-top:4px}.cover .ag .d{font-size:12.5px;opacity:.8;margin-top:3px}
+/* 컨트롤 */
+.nav{position:fixed;top:50%;transform:translateY(-50%);z-index:50;width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.92);border:none;cursor:pointer;font-size:20px;color:#0f766e;box-shadow:0 3px 16px rgba(0,0,0,.45);transition:.15s}
+.nav:hover{background:#fff;transform:translateY(-50%) scale(1.09)}
+.nav.prev{left:22px}.nav.next{right:22px}
+.nav:disabled{opacity:.2;cursor:default;transform:translateY(-50%)}
+.counter{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;color:#cbd5e1;font-size:12px;font-weight:700;background:rgba(0,0,0,.5);padding:6px 16px;border-radius:20px;letter-spacing:.5px}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#0f766e,#22d3ee);z-index:60;transition:width .25s}
+.dots{position:fixed;bottom:18px;right:24px;z-index:50;display:flex;gap:7px}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.28);cursor:pointer;transition:.15s}
+.dot.on{background:#22d3ee;transform:scale(1.3)}
+.hint{position:fixed;bottom:20px;left:24px;z-index:50;color:rgba(255,255,255,.4);font-size:11px}
+@media print{@page{size:1280px 720px;margin:0}body{background:#fff;overflow:visible}.viewport{position:static}.stage{transform:none!important;box-shadow:none;page-break-after:always}.slide{display:grid!important}.slide.cover{display:block!important}.nav,.counter,.dots,.progress,.hint{display:none}}
+</style></head><body>
+
+<div class=progress></div>
+<button class="nav prev" aria-label="이전">&#10094;</button>
+<button class="nav next" aria-label="다음">&#10095;</button>
+<div class=counter></div><div class=dots></div>
+<div class=hint>← / → 또는 버튼으로 이동</div>
+
+<div class=viewport><div class=stage>
+
+<!-- S1 표지 -->
+<section class="slide cover">
+ <div class=cwrap>
+  <span class=tag>Pan HR · M0 · M1</span>
+  <h1>개발요건정의 요약</h1>
+  <div class=agenda>
+   <div class=ag><div class=n>01</div><div class=t>Pan HR 한눈에</div><div class=d>4개 메타모듈 (M0·M1 담당)</div></div>
+   <div class=ag><div class=n>02 · 03</div><div class=t>M1 인력동인</div><div class=d>Activity → 시간 → FTE · 4소스 융합</div></div>
+   <div class=ag><div class=n>04</div><div class=t>M0 인력계획</div><div class=d>정원 forecast · Cox · Skill 보정</div></div>
+   <div class=ag><div class=n>05</div><div class=t>개발요건 요약</div><div class=d>인풋·아웃풋·화면·기능·로직</div></div>
+   <div class=ag><div class=n>06</div><div class=t>다층 모델링</div><div class=d>FTE·정원 심층설계 (vi~xii)</div></div>
+   <div class=ag><div class=n>핵심</div><div class=t>bottom-up · 209h 상한</div><div class=d>activity→BFM→전사 적층</div></div>
+  </div>
+ </div>
+</section>
+
+<!-- S2 한눈에 -->
+<section class=slide>
+ <div class=shead><div class=ttl>Pan HR 한눈에 <span class=sm>— 4개 메타모듈</span></div><div class=pg>02 / 08</div></div>
+ <div class=sbody>
+  <div class=mods>
+   <div class="mod on"><div class=wm>M1</div><div class=id>M1</div><div class=nm>인력동인</div><div class=ds>개인×활동 <b>11,149개</b>를 4소스로 융합 → 활동·시간·FTE·동인. <b>현재 적정정원</b>의 bottom layer.</div><span class="badge me">담당 · 구현+mockup</span></div>
+   <div class="mod on"><div class=wm>M0</div><div class=id>M0</div><div class=nm>인력계획</div><div class=ds>조직별 FTE/현인원 → <b>동인 forecast</b> → Cox 수급 → Skill 보정 → 교육/재배치/채용.</div><span class="badge me">담당 · workforce+mockup</span></div>
+   <div class=mod><div class=wm>M2</div><div class=id>M2</div><div class=nm>업무부하</div><div class=ds>개인·조직 과부족 = f(M1 동인, M3 스킬). 과부하/저부하 신호.</div><span class="badge other">연계</span></div>
+   <div class=mod><div class=wm>M3</div><div class=id>M3</div><div class=nm>역량 (Skill)</div><div class=ds>직무 Skill As-Is / To-Be Gap 모니터링 · aging(숙련변화).</div><span class="badge other">연계</span></div>
+  </div>
+  <div class=band><span class=b>M1 활동 FTE</span><span class=b>M2 부하</span><span class=b>M3 Skill·aging</span><span class=op>&rarr;&#8853;&rarr;</span><span class="b res">M0 인력계획 — 정원·수급GAP·시나리오 (Pan-007)</span></div>
+ </div>
+ <div class=sfoot><span><b>Pan HR</b> · 인력 규모·조직 역량 모델링</span><span>임준택 · 2026-05-28 리뷰</span></div>
+</section>
+
+<!-- S3 M1 ① -->
+<section class=slide>
+ <div class=shead><div class=ttl><span class="chip navy">M1</span> 인력동인 <span class=sm>① 개요 · 출처 구성</span></div><div class=pg>03 / 08</div></div>
+ <div class=sbody>
+  <div class=lead>"이 사람이 1년에 어떤 activity를 몇 시간씩 하는가"를 채우는 모듈 · <b>M0의 bottom layer</b>. 개인의 모든 activity를 <b>IDI·ICT·BFM 다소스로 융합</b>해 추출(출처 태깅)하고, 자기보고가 못 잡는 미포착분(자기보고는 인당 일부만 설명)을 <b>검증된 결측예측 모델</b>(co-activity 행렬완성 + RF 시간추정)로 <b>가용기준(활동+준비+대기)</b>까지 보완 — 마스킹 복원 <b>recall@20 82%</b> · 시간추정 오차 중앙 <b>25.2h</b>로 검증.</div>
+  <div class=cols style="grid-template-columns:1.25fr 1fr">
+   <div style="display:flex;flex-direction:column;gap:9px;min-height:0">
+    <div class=flow style="flex:1">
+     <div class=fx><div class=n>INPUT</div><div class=t>다출처 원천</div><div class=d>IDI 녹취 265 · RACI 21사 · BFM JD · ICT(그룹웨어 253K·회의실·출퇴근)</div></div>
+     <div class=arr>&rarr;</div>
+     <div class=fx><div class=n>추출·융합</div><div class=t>Activity Master</div><div class=d>LLM 구조화 + 사별 파서 + Process Mining → 활동·전후팀·건당시간</div></div>
+     <div class=arr>&rarr;</div>
+     <div class=fx><div class=n>결측 예측</div><div class=t>모델 보완→209h</div><div class=d>co-activity 후보 + RF 시간추정 → 가용기준 보정 → 209h 상한(초과 시만 축소)</div></div>
+     <div class=arr>&rarr;</div>
+     <div class=fx><div class=n>OUTPUT</div><div class=t>FTE·동인</div><div class=d>개인×활동 시간·FTE·출처 → BFM 매개로 M0 입력</div></div>
+    </div>
+    <div class=callout><b>방법론 도출 로직</b> — ① <b>209h 구성 맞추기(ON/OFF)</b>: 활동별 배분(Duty→Task→Activity + 근거 시스템 실토), 결측·허위응답은 상한으로 통제 ② <b>PROXY 대체변수</b>(시스템로그·문서량·콜) ③ <b>다소스 융합</b>(ICT실측 &gt; 공영IDI &gt; 표준) ④ <b>미포착 결측예측</b>(MissForest 계열 RF 시간추정 + NMF 행렬완성 co-activity, TDABC 가용기준, 방송교대 holdout 검증).</div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:11px;min-height:0">
+    <div class=kgrid style="flex:1">
+     <div class="k g"><div class=l>현원</div><div class=v>391</div><div class=s>전사 (명)</div></div>
+     <div class="k"><div class=l>추출 활동</div><div class=v>11,149</div><div class=s>4소스 융합</div></div>
+     <div class="k b"><div class=l>직접근거</div><div class=v>3,078</div><div class=s>확정+발견+관측</div></div>
+     <div class="k a"><div class=l>활동 설명도</div><div class=v>85%</div><div class=s>중앙·209h 상한</div></div>
+    </div>
+    <div>
+     <div style="font-size:12.5px;font-weight:700;margin-bottom:6px">활동시간 출처 구성 (11,149)</div>
+     <div class=stk><div style="width:1.4%;background:#10b981" title="확정 ICT 실측 151"><span>확정 151</span></div><div style="width:21.6%;background:#22a0c8" title="발견 그룹웨어 2406"><span>발견 2406</span></div><div style="width:4.7%;background:#3b82f6" title="관측 IDI 521"><span>관측 521</span></div><div style="width:19.0%;background:#9ca3af" title="표준 BFM 2114"><span>표준 2114</span></div><div style="width:45.5%;background:#f59e0b" title="보정 결측예측 5070"><span>보정 5070</span></div><div style="width:0.8%;background:#d1d5db" title="추정 IPF 88"><span>추정 88</span></div></div>
+     <div class=cap style="margin-top:6px">확정(ICT)·발견(그룹웨어 PM)·관측(IDI)·표준(BFM)·추정(IPF). &#9888; 공영 ICT 부서단위·희소 → 확정 비중 한계.</div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class=sfoot><span><b>M1</b> 인력동인 — Activity 시간/FTE</span><span>임준택 · 2026-05-28 리뷰</span></div>
+</section>
+
+<!-- S4 M1 ② -->
+<section class=slide>
+ <div class=shead><div class=ttl><span class="chip navy">M1</span> 인력동인 <span class=sm>② 4소스 융합 · 단위시간 위계</span></div><div class=pg>04 / 08</div></div>
+ <div class=sbody>
+  <div class=tbl-fill>
+   <table>
+    <tr><th style="width:18%">소스</th><th>적용 알고리즘 (코드)</th><th style="width:22%">무엇을 채우나</th><th style="width:9%">status</th></tr>
+    <tr><td><b>IDI 자기보고</b><br>(녹취 LLM 265명)</td><td>GPT-4o-mini가 녹취록을 읽고 <b>활동명·단계·전후 협업팀·건당 소요시간·주기</b>를 정해진 표(JSON)로 자동 정리 (6건 동시·실패 시 4회 재시도)</td><td>활동명·프로세스 단계·전후 연결팀·건당 소요분·주기</td><td>관측</td></tr>
+    <tr><td><b>ICT 실측</b><br>(회의실·방송·출퇴근)</td><td>출퇴근 시간값을 시각 환산(0.369→08:51) + 회의실 작성자별·방송 교대조별 실제 시간 합산 → <b>실측 근무시간</b></td><td>실제 투입시간 — <b>확정 앵커</b>(IPF에서 고정)</td><td>확정</td></tr>
+    <tr><td><b>그룹웨어 문서</b><br>(253K건)</td><td><b>Process Mining</b>(van der Aalst): 문서종류=활동, 기안→결재로 처리시간(flow) + 부서 handover 사회망 + 209h 제약으로 종류별 시간 추정</td><td>IDI 미언급 활동 <b>발견</b> + 발생량·처리시간</td><td>발견</td></tr>
+    <tr><td><b>BFM 직무기술서</b><br>(56직무)</td><td>팀을 직무기술서(JD)에 연결 → 세부업무 단계별 <b>표준 분(分) 합산</b> × 수행주기(주1·월1)로 연간 환산</td><td>표준 활동 카탈로그·비중·주기 (공백 보강)</td><td>표준</td></tr>
+    <tr><td><b>결측예측 모델</b><br>(co-activity + RF)<br>★ 미포착 보완</td><td><b>① RF 시간추정</b>(MissForest 계열·직무/직급/도메인→단위시간) <b>② NMF 행렬완성</b>(person×activity 잠재기능 → "이런 사람은 이런 활동도 한다"는 미포착 활동 후보) <b>③ TDABC 가용기준</b>까지 채움 — <b>방송교대 holdout 검증</b>(복원 recall@20 82%·시간오차 25.2h)</td><td>자기보고가 못 잡은 <b>미포착 활동·시간</b> (가용기준 보정)</td><td>보정</td></tr>
+    <tr><td><b>209h 상한(cap)</b><br>+ Wright</td><td>추정 활동시간을 <b>그대로 합산</b>하되 <b>209h(월 가용)는 상한</b> — 초과 시만 비례 축소, 미만은 그대로 둬 저부하/과부하 보존 + 연차↑ 더 빠르게(√1.5)</td><td>추정시간 합산 · 209h 초과 시만 축소</td><td>추정</td></tr>
+   </table>
+  </div>
+  <div class=callout style="border-color:#0f766e"><b>시간 근거 위계</b>: ICT 실측 &gt; 공영 IDI &gt; BFM 표준 &gt; <b>결측예측 모델</b>(미포착 보완). 실제 분포 — 관측기반(IDI·ICT·편성) <b>1,021(9%)</b> · BFM 표준 2,114(19%) · <b>결측예측 5,869(53%)</b> · 기본값 2,145(19%). 결측예측분은 <b>검증된 모델</b>(recall@20 82%)로 채워 신뢰도 태깅.</div>
+  <div class=dash style="grid-template-columns:1fr"><div class="dcard m1"><div class=dt><span>대시보드 — M1 조직 드릴다운</span><a href="M1_대시보드_mockup.html">열기 &#9658;</a></div>
+   <div class=db>좌측 레벨 탭(전사·본부·실·팀) → 카드 클릭 상세 = 적정인력 추이·예측(시계열) · 변수중요도(동인) · 하부조직 카드 · 주요 Process(이름+FTE) · 조직이슈(IDI). Process 클릭 → 프로세스맵(swimlane STEP별 시간)·<b>프로세스 동인</b>.</div></div></div>
+ </div>
+ <div class=sfoot><span><b>M1</b> 인력동인 — 4소스 융합·status 태깅</span><span>임준택 · 2026-05-28 리뷰</span></div>
+</section>
+
+<!-- S5 M0 -->
+<section class=slide>
+ <div class=shead><div class=ttl><span class=chip>M0</span> 인력계획 <span class=sm>— workforce · 정원 예측 · M3 Skill 보정</span></div><div class=pg>05 / 08</div></div>
+ <div class=sbody>
+  <div class=flow>
+   <div class=fx><div class=n>INPUT · 근거</div><div class=t>보유 실데이터</div><div class=d>M1 활동 FTE(bottom-up 정원) · 동인 시계열(콜 월36·시청률 월51·취급액 월36) · 입퇴사 3년 · M3 Skill</div></div>
+   <div class=arr>&rarr;</div>
+   <div class=fx><div class=n>STAGE A · 방법론</div><div class=t>동인 시계열 forecast</div><div class=d>per-driver ETS/SARIMA + rolling-origin backtest(MASE)<br><span style="color:#15803d;font-weight:700">✓ 시청률 0.55 · 취급액 0.67</span></div></div>
+   <div class=arr>&rarr;</div>
+   <div class=fx><div class=n>STAGE B·C · 방법론</div><div class=t>정원-동인 탄력성</div><div class=d>현재FTE × Π(1+β·%Δ동인) · β <b>데이터 추정</b>(취급액 0.289)<br><span style="color:#15803d;font-weight:700">✓ 함수비중×YoY회귀</span> → 90%CI</div></div>
+   <div class=arr>&rarr;</div>
+   <div class=fx><div class=n>STAGE D · 방법론</div><div class=t>Cox 수급 + Skill 보정</div><div class=d>입퇴사 생존분석 → 순공급 → 수급GAP · Skill Fit → 유효공급</div></div>
+   <div class=arr>&rarr;</div>
+   <div class=fx><div class=n>OUTPUT · 산출</div><div class=t>정원계획·처방</div><div class=d>조직별 필요정원[90%CI] · 수급GAP → 교육/재배치/채용</div></div>
+  </div>
+  <div class=tbl-fill>
+   <table>
+    <tr><th style="width:16%">모듈</th><th>로직</th><th style="width:26%">데이터(보유)</th></tr>
+    <tr><td><b>정원 산출·forecast</b></td><td>현재 정원 = <b>bottom-up 적층</b>(activity→BFM→전사) · ⚠정원 타깃 연3점→직접외삽 불가 → <b>2-stage</b>: ① 동인 forecast(콜 MSTL/TBATS·시청률 ETS·취급액 SARIMA) ② 정원-동인 <b>탄력성(패널 ElasticNet)</b> → Hyndman MinT·conformal 90%CI<br><span style="color:#15803d;font-weight:700">✓ 실데이터 검증</span>: 시청률 MASE 0.55·취급액 0.67·콜 1.29 / <b>탄력성 β 데이터 추정</b>(취급액 0.289·시청률 0.08·콜 0.078, R²0.125→prior shrinkage) / 정원 346→<b>347 [327~367]</b> / Cox 연이탈 16.1%</td><td>콜 일1,004·시청률 월51·취급액 월36·VDT 93부서×36월·재무 연3</td></tr>
+    <tr><td><b>이중 구동</b></td><td><b>M1 업무량동인 ⊕ M3 스킬동인(aging)</b> 동시 변화로 정원 이동</td><td>M1 activity FTE · M3 Skill 시계열</td></tr>
+    <tr><td>Cox 이탈·충원</td><td>입퇴사 3년 생존분석 + EOS E3/E4 가중 + 평가/Workload 공변량 → 충원소요</td><td>입퇴사 3년·EOS 287·평가 3년·B3 재배치</td></tr>
+    <tr><td>M3 Skill 보정</td><td>As-Is(IDI 0-5) vs To-Be(RSM 0-5) Gap → 유효공급 → 교육(학습곡선)/재배치(B3)/채용</td><td>IDI Skill 280·RSM 63직무·팀Gap 92</td></tr>
+   </table>
+  </div>
+  <div class=callout style="border-color:#2563eb;background:#eff6ff"><b>데이터 근거</b> — RAW <b>OneDrive_2026-05-22.zip(283파일)</b> + 전처리 31 DB로 M0 전 모듈 입력 실재 확인. <b>forecast 파이프라인 프로토타입 실데이터 검증 완료</b>(동인 3/3, 시청률·취급액 MASE&lt;1). ※<b>동인 두 층위</b>: 정원을 만드는 <b>bottom-up 본체=개인 활동</b>(관측+검증된 결측예측), 거시동인은 forecast layer로 <b>BFM 접점별 소수만 압축</b>(타깃 연3점→과다 시 N&lt;변수 overfit). 상세: M0_FORECASTING_방법론_분석.md</div>
+ </div>
+ <div class=sfoot><span><b>M0</b> 인력계획 — 정원·수급·Skill 보정</span><span>임준택 · 2026-05-28 리뷰</span></div>
+</section>
+
+<!-- S6 개발요건 -->
+<section class=slide>
+ <div class=shead><div class=ttl>개발요건 요약 <span class=sm>— 인풋 · 아웃풋 · 화면 · 기능 · 로직</span></div><div class=pg>06 / 08</div></div>
+ <div class=sbody>
+  <div class=tbl-fill>
+   <table>
+    <tr><th style="width:9%">구분</th><th style="width:38%"><span class=chip navy style="background:#1f2937;color:#fff">M1</span> 인력동인</th><th><span class=chip style="background:#0f766e;color:#fff">M0</span> 인력계획</th></tr>
+    <tr><td><b>인풋</b></td><td>IDI 녹취 265 · RACI 21사 · BFM JD · ICT(그룹웨어·회의실·출퇴근) · 인별 raw(직급·근속, PII 제외)</td><td>M1 활동 FTE·조직도 · <b>동인 시계열</b>(콜·시청률·취급액·VDT·재무) · <b>정원/현원 3년</b> · <b>입퇴사 3년</b>(Cox) · <b>EOS 몰입유형</b> · M3 Skill(mock)</td></tr>
+    <tr><td><b>아웃풋</b></td><td>activity_master.json — 개인&times;활동 시간·FTE·출처·status</td><td>조직별 <b>현원/정원/FTE·수급GAP</b> · <b>예측 필요정원(90%CI)</b> · <b>예상이탈·충원소요</b>(Cox) · 유효공급 FTE · 교육/재배치/채용</td></tr>
+    <tr><td><b>화면</b></td><td>조직 드릴다운(전사~개인) + TASK·Process Card 팝업</td><td>전체현황 매트릭스(FTE/현인원 비율색) → 본부/실/팀·파트/개인/TASK/Process 드릴 · 우측 기간·동인 슬라이더 + 90%CI 추세 + M3 Skill 보정</td></tr>
+    <tr><td><b>기능</b></td><td>F-PAN-01 IDI추출 · 02 RACI · 04 ICT · <b>00·03 통합+결측예측</b>(co-activity·RF)</td><td><b>F-PAN-07</b> 현황 · <b>08</b> 2-stage forecast · <b>09</b> Cox 이탈·충원 · <b>10</b> M3 Skill · R→E→P (<span class=ds>feature_m0_plan.py·검증</span>)</td></tr>
+    <tr><td><b>로직</b></td><td>다소스 융합 → 시간 위계(ICT&gt;IDI&gt;표준) → <b>결측예측 모델</b>(RF 시간+NMF co-activity, 가용기준·검증) → 209h 상한(cap)</td><td>① 현재 정원=<b>bottom-up 적층</b>(209h 상한) ② 동인 forecast→<b>탄력성→필요정원</b>(MinT·90%CI) ③ <b>Cox 순공급→수급GAP</b> ④ Skill Fit→교육/재배치/채용</td></tr>
+   </table>
+  </div>
+  <div class=cap>상세: <b>개발요건정의서_PAN_M1.md</b>(파이프라인 구현분) · <b>개발요건정의서_PAN_M0.md</b>(쉐막 표준 기능→클래스→골드, R→E→P).</div>
+ </div>
+ <div class=sfoot><span>개발요건 — 김부사장 지침(인풋/아웃풋/화면/기능/로직)</span><span>임준택 · 2026-05-28 리뷰</span></div>
+</section>
+
+<!-- S7 M1 다층 -->
+<section class=slide>
+ <div class=shead><div class=ttl>FTE·정원 다층 모델링 <span class=sm>— 심층설계 (vi~xii)</span></div><div class=pg>07 / 08</div></div>
+ <div class=sbody>
+  <div class=lead>활동시간 매트릭스 → FTE 환산 → 개인·직무·팀·기능 다층 집계. <b>현재 정원 = 활동 bottom-up(회귀 아님)</b>, 회귀는 동인 탄력성(M0 시뮬)용. <b>209h = 상한(cap)</b> — 추정 활동시간을 그대로 두고 초과 시만 축소 → 저부하/과부하 노출(활동 설명도 중앙 85%).</div>
+  <div class=flow style="flex:0 0 auto">
+   <div class=fx><div class=n>vii·viii</div><div class=t>FTE 산출</div><div class=d>FTE = 활동시간 ÷ 표준(월 209h·연 2,010h) · d/w/m/q · 3년 근태 가용 보정</div></div>
+   <div class=arr>&rarr;</div>
+   <div class=fx><div class=n>ix·x·xi</div><div class=t>다층 집계</div><div class=d>개인→직무→팀 Σ · <b>임원 제외, 최하위 단위만</b> · 팀=Σ직무+협업부하(Multilevel)</div></div>
+   <div class=arr>&rarr;</div>
+   <div class=fx><div class=n>xii</div><div class=t>Cross-team 보완</div><div class=d>전후연결 2,013엣지 누락발견 · RACI·시간비중 joint allocation · 회의실 SNA 가산</div></div>
+   <div class=arr>&rarr;</div>
+   <div class=fx><div class=n>vi</div><div class=t>검증</div><div class=d>과거 3년 조직·인력 back-test · face validity(현원 vs 적정 GAP)</div></div>
+  </div>
+  <table>
+   <tr><th style="width:30%">요구사항</th><th>대응 설계</th><th style="width:15%">상태</th></tr>
+   <tr><td><b>xii</b> 프로세스가 개인/팀 넘나듦 → 개인 초과 차원 FTE 보완</td><td>① 전후연결 그래프(2,013엣지)로 cross-team 누락 발견 ② RACI·시간 비중으로 참여 팀에 joint allocation ③ 회의실 SNA 협업부하 가산 · <b>프로세스 FTE 별도 산출</b></td><td><span class=ds>전후연결 표시·배분 설계</span></td></tr>
+  </table>
+  <div class=callout style="border-color:#2563eb;background:#eff6ff"><b>그룹웨어 Process Mining</b> (van der Aalst · 253,395문서·15,732종) — ① 문서종류=활동, 기안→결재로 <b>처리시간(flow)</b> 산출 ② 부서 <b>handover 사회망</b>(노드 127·엣지 435, 중심 방송제작3팀, 경영기획, 방송제작2팀, QA팀) ③ <b>문서가 가용근무 15.2% 설명</b>(팀 중앙 6.8%)→나머지 비문서 ④ 209h+flow prior 경계LSQ 추정: 지출결의서 13.9분 · 근거리출장완료보고 56.0분 · 국내출장완료보고서 54.7분 · 자금결의서 14.6분 <span style="color:#94a3b8">⚠ flow=경과(대기포함)·service=활성 추정</span></div>
+  <div class=cap>※ VDT 3년 시계열 cascading 정원모델(xiii)은 M0(인력계획)에서 별도 다룸. 전체 설계: M1_FTE정원모델링_심층설계.html · 데이터/계수 일부 가설(mockup) — 동인 시계열 확보 시 실추정 대체.</div>
+ </div>
+ <div class=sfoot><span><b>M1</b> FTE·정원 다층 모델링 (심층설계)</span><span>임준택 · 2026-05-28 리뷰</span></div>
+</section>
+
+<!-- S8 학술 방법 쉬운 설명 -->
+<section class=slide>
+ <div class=shead><div class=ttl>학술 방법 <span class=sm>— 쉬운 말로 + 검증 근거</span></div><div class=pg>08 / 08</div></div>
+ <div class=sbody>
+  <div class=lead>모든 추정은 <b>"지어낸 값"이 아니라 검증 가능한 모델</b>입니다. 관측·실측이 본체이고, 모델은 <b>자기보고가 못 잡은 미포착분만 보완</b> — 각 방법은 검증지표(오차·복원율·R²)와 신뢰구간으로 투명하게 표기합니다.</div>
+  <div class=tbl-fill>
+   <table>
+    <tr><th style="width:17%">방법 (학술명)</th><th style="width:40%">쉬운 말로</th><th style="width:18%">어디에 쓰나</th><th>검증·근거</th></tr>
+    <tr><td><b>결측 시간 예측</b><br>RandomForest<br>(MissForest)</td><td>"비슷한 <b>직무·직급</b>인 사람들의 활동시간 패턴을 <b>의사결정나무 수백 그루</b>로 학습 → 시간이 안 적힌 활동의 소요시간을 추정"</td><td>M1 — 미포착 활동의 <b>소요시간</b></td><td>아는 값을 가리고 맞혀보니 <b class=ok>오차 중앙 25.2h</b>/활동 (Stekhoven 2012)</td></tr>
+    <tr><td><b>미포착 활동 발굴</b><br>행렬완성 NMF<br>(softImpute)</td><td>"<b>넷플릭스 추천</b>처럼 — 비슷한 사람들이 하는 활동을 안 적은 사람에게 '이것도 했을 것'이라고 추천해 빠진 활동을 찾음"</td><td>M1 — 자기보고가 빠뜨린 <b>활동 자체</b></td><td>활동을 일부러 가렸을 때 <b class=ok>상위 20개 안에서 82% 복원</b> (Hastie 2015)</td></tr>
+    <tr><td><b>탄력성</b><br>로그-로그 회귀<br>(상수탄력성)</td><td>"<b>매출이 1% 늘면 인력이 몇 % 느는지</b>의 민감도. 3년 월별 데이터로 측정 — 직접 인력↔매출은 데이터(연 3점)가 부족해 <b>활동량을 매개</b>로 추정"</td><td>M0 — 동인 변화 → 정원</td><td>취급액 <b>β=0.289</b>(R²0.125) · 부족분은 도메인값으로 절반 보정(shrinkage) · 90%CI 표기 (Hamermesh 노동수요)</td></tr>
+    <tr><td><b>미래값 예측</b><br>ETS / SARIMA</td><td>"동인의 <b>과거 추세·계절 패턴을 분해</b>해 12개월 앞을 예측. 여러 모델 중 과거를 가장 잘 맞힌 것 선택"</td><td>M0 — 동인 12개월 forecast</td><td><b class=ok>MASE&lt;1</b>(시청률 0.55·취급액 0.67 = 계절평균보다 정확) rolling-origin 검증</td></tr>
+    <tr><td><b>이탈 위험</b><br>Cox 생존분석</td><td>"<b>의학에서 환자 생존율</b> 보는 기법 — 근속기간별로 '언제 떠날 위험이 큰지'를 추정"</td><td>M0 — 이탈·충원 소요</td><td>연 이탈위험 <b>16.1%</b> (입퇴사 3년 · ⚠표본 확장 권고)</td></tr>
+    <tr><td><b>209h 상한</b><br>시간기반원가<br>(TDABC)</td><td>"1인이 한 달에 쓸 수 있는 시간은 <b>물리적으로 209h</b>가 한계. 활동시간 합이 넘을 때만 비례 축소(미만은 그대로 둬 저부하 신호 보존)"</td><td>M1·M0 — 시간 정합·가용기준</td><td>회계학 <b>실용가용 capacity</b> (Kaplan&amp;Anderson)</td></tr>
+   </table>
+  </div>
+  <div class=callout style="border-color:#0f766e"><b>일관 원칙</b> — ① <b>관측 &gt; 표준 &gt; 모델보완</b> 위계로 신뢰도 태깅 ② 모델 보완분은 <b>검증지표</b>(오차·복원율·R²) 동반 ③ 데이터 부족 시 <b>도메인 prior로 보수적 shrinkage</b>(과적합 방지) ④ 점예측이 아니라 <b>민감도 + 90% 신뢰구간</b>으로 표기.</div>
+ </div>
+ <div class=sfoot><span>학술 방법 — 검증 가능한 추정 (쉬운 설명)</span><span>임준택 · 2026-05-28 리뷰</span></div>
+</section>
+
+</div></div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')], stage=document.querySelector('.stage');
+const prevBtn=document.querySelector('.nav.prev'), nextBtn=document.querySelector('.nav.next');
+const counter=document.querySelector('.counter'), prog=document.querySelector('.progress'), dotwrap=document.querySelector('.dots');
+slides.forEach((s,i)=>{const d=document.createElement('div');d.className='dot';d.title=(i+1);d.onclick=()=>show(i);dotwrap.appendChild(d);});
+let cur=0;
+function fit(){const s=Math.min(innerWidth/1280, innerHeight/720); stage.style.transform='scale('+s.toFixed(4)+')';}
+function show(i){
+  cur=Math.max(0, Math.min(slides.length-1, i));
+  slides.forEach((s,k)=>s.classList.toggle('active', k===cur));
+  [...dotwrap.children].forEach((d,k)=>d.classList.toggle('on', k===cur));
+  counter.textContent=(cur+1)+' / '+slides.length;
+  prog.style.width=((cur+1)/slides.length*100)+'%';
+  prevBtn.disabled=cur===0; nextBtn.disabled=cur===slides.length-1;
+}
+prevBtn.onclick=()=>show(cur-1); nextBtn.onclick=()=>show(cur+1);
+addEventListener('keydown', e=>{
+  if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault(); show(cur+1);}
+  if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault(); show(cur-1);}
+  if(e.key==='Home') show(0); if(e.key==='End') show(slides.length-1);
+});
+addEventListener('resize', fit); fit(); show(0);
+</script>
+</body></html>
