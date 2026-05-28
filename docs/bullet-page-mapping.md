@@ -102,15 +102,27 @@ Shemak 기능도(Next.js 인덱스)의 각 **불릿 항목**을 클릭하면 매
 | 1단계: 불릿 → HTML 열기 + 뒤로가기 복귀 | ✅ 배포됨 |
 | optic-view `?sec=` → 카드 상세 자동 열기 | ✅ 동작 |
 | ceo / hr-function / hr-member `?sec=` → id 앵커 점프 | ✅ 동작 |
-| 대시보드 M0~M4 `?sec=` → 특정 뷰 점프 | ⚠️ **미완** (IIFE 캡슐화) |
+| 대시보드 **M0 / M1 / M4** `?sec=` → 특정 뷰 점프 | ✅ 동작 (window 노출 방식) |
+| 대시보드 **M3** `?sec=` → 특정 모듈 점프 | ⚠️ M3-1만 (페이지 열기). M3-6/BFM/M3-DEV는 잔여 |
+| 대시보드 **M2** | 단일 뷰 → 페이지 열기로 충분 |
 
-### 대시보드 잔여 작업
-전환 함수·`DASH_CODE`가 IIFE에 갇혀 있어, 다음 중 하나가 필요:
-- IIFE 내부(함수 정의 직후)에 `window.setLevel = setLevel; window.DASH_CODE = DASH_CODE;` 노출 추가 → 범용 핸들러가 `window.*`로 접근, 또는
-- 각 대시보드 초기화 코드에 URL 파싱을 직접 삽입.
-- 대시보드마다 전환 함수가 다르므로(M0 setLevel, M4 updateDashId, M1/M3 별도) 개별 대응 필요. M2는 단일 뷰라 페이지 열기로 충분.
+### 대시보드 점프 해결 방식 (M0/M1/M4)
+IIFE에 갇힌 전환 함수를 **함수 정의가 끝난 직후(또는 `DASH_CODE` 정의 직후)에 `window.__setView`로 노출**하고, 핸들러가 그걸 호출:
+```js
+// 각 대시보드 (DASH_CODE 정의 직후 삽입)
+window.__DASH_CODE = DASH_CODE;
+window.__setView = function(k){ try{ <전환함수>(k); }catch(e){} };
+// M0: setLevel(k) / M1: setLv(k) / M4: show(k) / M3: setModule(k)
+```
+핸들러(v3)는 `DASH_CODE`가 있으면 **전환함수만(①) 사용**하고 카드 클릭(③)은 건너뛴다 (코드 텍스트가 든 엉뚱한 카드를 클릭하는 간섭 차단).
 
-> 참고: M0에서 IIFE **끝**에 핸들러를 넣었을 때 콘솔 에러 없이 미실행되는 현상이 있었음(원인 미규명). 함수 정의 직후 삽입 또는 window 노출 방식 권장.
+### M0 잔여
+`setLevel`이 지원하는 뷰는 6개(overview/hqs/offices/teams/persons/tasks)뿐. **process/data/simulation(PAN-007/008/009)은 render 분기가 없어** 점프해도 콘텐츠가 안 나옴 → HTML 측 render 지원 필요.
+
+### M3 잔여 (미해결)
+M3는 초기화 로직이 여러 겹(setModule 가드 + `state.txModule`↔`state.module` 동기화 + init 강제)이라, `window.__setView` 호출·지연 재설정·`state` 초기화 주입을 모두 시도했으나 **초기화가 계속 M3-1로 덮어씀**. 직접 `window.__setView('M3-6')`를 (로드 완료 후) 호출하면 정상 동작하므로, **init에서 모듈을 강제하는 정확한 지점을 찾아 거기서 `?sec=`를 반영**해야 함. 현재는 M3-1(기본 화면)로 페이지 열기.
+
+> 참고: M0에서 IIFE **끝**에 핸들러를 넣었을 때 콘솔 에러 없이 미실행되는 현상이 있었음 → window 노출 방식으로 우회 해결.
 
 ---
 
