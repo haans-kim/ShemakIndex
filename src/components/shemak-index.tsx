@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { COLUMNS, SECTIONS } from "@/data/shemak-data";
 import type { CellData, ColumnData, SectionData } from "@/data/shemak-data";
+import { BULLET_TARGETS } from "@/data/bullet-targets";
 
 type SectionStyle = {
   header: string;
@@ -79,9 +79,13 @@ function SectionHeader({ section }: { section: SectionData }) {
 function ModuleCard({
   cell,
   style,
+  rowId,
+  colId,
 }: {
   cell: CellData;
   style: SectionStyle;
+  rowId: string;
+  colId: string;
 }) {
   if (!cell.active) {
     return (
@@ -112,17 +116,42 @@ function ModuleCard({
       )}
     >
       <ul className="space-y-1">
-        {cell.bullets.map((b, i) => (
-          <li
-            key={i}
-            className="flex gap-1.5 text-[14px] leading-snug font-medium text-slate-800"
-          >
-            <span
-              className={cn("mt-[5px] h-1 w-1 rounded-full shrink-0", style.bullet)}
-            />
-            <span>{b}</span>
-          </li>
-        ))}
+        {cell.bullets.map((b, i) => {
+          const target = BULLET_TARGETS[`${rowId}|${colId}|${i}`];
+          const liClass =
+            "flex gap-1.5 text-[14px] leading-snug font-medium text-slate-800";
+          if (!target) {
+            return (
+              <li key={i} className={liClass}>
+                <span
+                  className={cn(
+                    "mt-[5px] h-1 w-1 rounded-full shrink-0",
+                    style.bullet
+                  )}
+                />
+                <span>{b}</span>
+              </li>
+            );
+          }
+          return (
+            <li key={i}>
+              <a
+                href={`/${target.file}.html${
+                  target.anchor ? `#${target.anchor}` : ""
+                }`}
+                className={cn(liClass, "hover:underline")}
+              >
+                <span
+                  className={cn(
+                    "mt-[5px] h-1 w-1 rounded-full shrink-0",
+                    style.bullet
+                  )}
+                />
+                <span>{b}</span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
@@ -182,16 +211,10 @@ export function ShemakIndex() {
             </div>
 
             {/* Sections */}
-            {SECTIONS.map((section, sIdx) => {
+            {SECTIONS.map((section) => {
               const style = SECTION_STYLE[section.id];
               return (
-                <motion.div
-                  key={section.id}
-                  className="mb-5"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: sIdx * 0.08, duration: 0.3 }}
-                >
+                <div key={section.id} className="mb-5">
                   <SectionHeader section={section} />
 
                   {section.rows.map((row) => (
@@ -223,12 +246,14 @@ export function ShemakIndex() {
                             key={`${row.id}-${col.id}`}
                             cell={cell}
                             style={style}
+                            rowId={row.id}
+                            colId={col.id}
                           />
                         );
                       })}
                     </div>
                   ))}
-                </motion.div>
+                </div>
               );
             })}
           </div>
