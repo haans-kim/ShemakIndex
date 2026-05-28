@@ -8801,4 +8801,132 @@ console.log('[M4] init function ready');
 /* ===== M4 모듈 끝 ===== */
 
 
-</script></body></html>
+</script>
+<style id="x-extension-styles">
+.x-ext-wrap{max-width:1400px;margin:0 auto;padding:24px;font-family:'Inter','NanumBarunGothic','Malgun Gothic',system-ui,sans-serif;color:#0F172A;background:#F8FAFC}
+.x-ext-wrap *{box-sizing:border-box}
+.x-ext-hr{height:1px;background:linear-gradient(90deg,transparent,#CBD5E1,transparent);margin:32px 0 24px}
+.x-page{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:18px 22px;margin-bottom:16px}
+.x-page__h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid #F1F5F9}
+.x-page__tw{flex:1;min-width:0}
+.x-page__area{display:inline-block;font-size:10.5px;font-weight:700;color:#055A86;background:#F0F6FA;padding:2px 8px;border-radius:3px;margin-bottom:5px;letter-spacing:.02em}
+.x-page__t{font-size:16px;font-weight:700;color:#0F172A;line-height:1.4;margin:0}
+.x-dash-id{display:inline-flex;align-items:center;background:#F6F7F9;border:1px solid #EEF1F4;color:#9AA1B4;font-size:9.5px;font-weight:700;border-radius:4px;padding:3px 8px;white-space:nowrap;font-family:'Segoe UI','Malgun Gothic',Arial,sans-serif;flex:none}
+.x-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.x-kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.x-kpi{background:linear-gradient(180deg,#fff,#FAFBFC);border:1px solid #E2E8F0;border-radius:6px;padding:12px 14px}
+.x-kpi__lbl{font-size:11px;color:#64748B;margin-bottom:4px}
+.x-kpi__val{font-size:18px;font-weight:700;color:#0F172A;line-height:1.2}
+.x-kpi__ch{font-size:10.5px;font-weight:600;padding:1px 6px;border-radius:3px;display:inline-block;margin-top:2px}
+.x-kpi__ch--red{color:#C0392B;background:#FEE2E2}
+.x-kpi__ch--green{color:#059669;background:#D1FAE5}
+.x-kpi__ch--neutral{color:#64748B;background:#F1F5F9}
+.x-block{background:#fff;border:1px solid #E2E8F0;border-radius:6px;padding:14px 16px;margin-bottom:12px}
+.x-block__t{font-size:12.5px;font-weight:600;color:#1E293B;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #F1F5F9}
+.x-bars{display:flex;flex-direction:column;gap:6px}
+.x-bar{display:grid;grid-template-columns:140px 1fr 50px;gap:8px;align-items:center;font-size:11.5px}
+.x-bar__lbl{color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x-bar__trk{height:14px;background:#F1F5F9;border-radius:3px;overflow:hidden}
+.x-bar__fill{height:100%;background:linear-gradient(90deg,#4A95BC,#066FA5);border-radius:3px}
+.x-bar__fill--acc{height:100%;background:linear-gradient(90deg,#E74C3C,#C0392B);border-radius:3px}
+.x-bar__v{font-size:11px;font-weight:600;color:#1E293B;text-align:right;font-family:'Consolas',monospace}
+.x-donut{display:flex;align-items:center;gap:18px}
+.x-donut-svg{width:140px;height:140px;flex:none}
+.x-donut-lg{list-style:none;padding:0;flex:1;margin:0}
+.x-donut-lg li{font-size:11.5px;color:#334155;padding:3px 0;display:flex;align-items:center;gap:6px}
+.x-dot{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+.x-donut-lg b{margin-left:auto;color:#0F172A;font-family:'Consolas',monospace}
+.x-hm{display:grid;gap:2px;font-size:10.5px}
+.x-hm__c{}
+.x-hm__ch{font-size:10px;font-weight:600;color:#475569;padding:4px 6px;text-align:center;background:#F8FAFC;border-radius:3px}
+.x-hm__rh{font-size:10.5px;font-weight:600;color:#334155;padding:6px 8px;text-align:right;white-space:nowrap}
+.x-hm__cell{padding:8px 4px;text-align:center;border-radius:3px;font-weight:600;font-family:'Consolas',monospace}
+.x-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.x-tbl th{background:#F8FAFC;color:#334155;font-weight:600;padding:7px 10px;text-align:left;border-bottom:2px solid #E2E8F0;font-size:11px}
+.x-tbl td{padding:6px 10px;border-bottom:1px solid #F1F5F9;color:#334155}
+.x-tbl tr:hover td{background:#F0F6FA}
+.x-ins{background:linear-gradient(180deg,#F0F9FF,#fff);border:1px solid #CBDFE9;border-radius:6px;padding:13px 16px;margin-bottom:12px}
+.x-ins__t{font-size:12px;font-weight:700;color:#055A86;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.x-ins__l{list-style:none;padding:0;margin:0}
+.x-ins__l li{font-size:12px;color:#334155;padding:4px 0;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.x-ins-i{flex:none;font-size:13px;line-height:1.4}
+.x-act{background:#fff;border:1px solid #E2E8F0;border-left:3px solid #066FA5;border-radius:6px;padding:13px 16px}
+.x-act__t{font-size:12px;font-weight:700;color:#0F172A;margin-bottom:8px}
+.x-act__l{list-style:none;padding:0;margin:0}
+.x-act__l li{font-size:12px;color:#334155;padding:5px 0;display:flex;gap:8px;align-items:center}
+.x-act-p{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex:none;letter-spacing:.04em}
+.x-act-p--High{background:#FEE2E2;color:#C0392B}
+.x-act-p--Mid{background:#FEF3C7;color:#D97706}
+.x-act-p--Low{background:#F1F5F9;color:#64748B}
+.x-ph{padding:40px 24px;text-align:center;border:1px dashed #CBD5E1;border-radius:6px;color:#475569}
+.x-ph p{font-size:13px;margin-bottom:6px}
+.x-ph .sub{font-size:11px;color:#94A3B8;font-style:italic}
+@media (max-width:768px){.x-kpi-strip{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="x-ext-wrap">
+  <div class="x-ext-hr"></div>
+  
+<section class="x-page" id="HRF-201-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">조직운영</span>
+      <h2 class="x-page__t">직제 변경·조직개편 시뮬</h2>
+    </div>
+    <span class="x-dash-id">HRF-201-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">시뮬 시나리오</div><div class="x-kpi__val">3안 (가/나/다)</div><span class="x-kpi__ch x-kpi__ch--neutral">가치사슬·기능통합</span></div><div class="x-kpi"><div class="x-kpi__lbl">영향 인원</div><div class="x-kpi__val">최대 184명</div><span class="x-kpi__ch x-kpi__ch--red">다안 적용 시</span></div><div class="x-kpi"><div class="x-kpi__lbl">정원 변동</div><div class="x-kpi__val">±0</div><span class="x-kpi__ch x-kpi__ch--green">T/O 430 고정</span></div><div class="x-kpi"><div class="x-kpi__lbl">예상 영향 기간</div><div class="x-kpi__val">4~6개월</div><span class="x-kpi__ch x-kpi__ch--neutral">안정화</span></div></div><div class="x-block"><div class="x-block__t">조직개편 3안 시뮬레이션</div><table class="x-tbl"><thead><tr><th>시나리오</th><th>신설</th><th>통합</th><th>폐지</th><th>재배치 인원</th><th>총비용</th></tr></thead><tbody><tr><td>가안 (가치사슬)</td><td>2팀</td><td>3팀→2팀</td><td>0</td><td>58명</td><td>현재 수준</td></tr><tr><td>나안 (기능통합)</td><td>1단위</td><td>5팀→3단위</td><td>0</td><td>124명</td><td>+2.1%</td></tr><tr><td>다안 (현행 유지)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>현재</td></tr></tbody></table></div><div class="x-block"><div class="x-block__t">시나리오별 R&R 정합도 (높을수록 우수)</div><div class="x-bars"><div class="x-bar"><div class="x-bar__lbl">가안 (가치사슬)</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:90.9%"></div></div><div class="x-bar__v">82</div></div><div class="x-bar"><div class="x-bar__lbl">나안 (기능통합)</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:86.5%"></div></div><div class="x-bar__v">78</div></div><div class="x-bar"><div class="x-bar__lbl">다안 (현행)</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:72.1%"></div></div><div class="x-bar__v">65</div></div></div></div></div>
+</section>
+<section class="x-page" id="HRF-202-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">직무등급</span>
+      <h2 class="x-page__t">직무등급 운영·페이밴드 매핑</h2>
+    </div>
+    <span class="x-dash-id">HRF-202-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">직무 등급 체계</div><div class="x-kpi__val">Grade 1~8</div><span class="x-kpi__ch x-kpi__ch--neutral">M4 기반</span></div><div class="x-kpi"><div class="x-kpi__lbl">페이밴드 단계</div><div class="x-kpi__val">8 × 5단계</div><span class="x-kpi__ch x-kpi__ch--neutral">Min/Mid/Max</span></div><div class="x-kpi"><div class="x-kpi__lbl">매핑된 직무</div><div class="x-kpi__val">64개</div><span class="x-kpi__ch x-kpi__ch--green">100% J001~J064</span></div><div class="x-kpi"><div class="x-kpi__lbl">등급 외 인원</div><div class="x-kpi__val">0명</div><span class="x-kpi__ch x-kpi__ch--green">전원 부여</span></div></div><div class="x-block"><div class="x-block__t">직무 등급별 인원 분포</div><div class="x-bars"><div class="x-bar"><div class="x-bar__lbl">Grade 8 (최상위)</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:7.7%"></div></div><div class="x-bar__v">8</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 7</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:21.1%"></div></div><div class="x-bar__v">22</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 6</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:43.1%"></div></div><div class="x-bar__v">45</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 5</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:74.6%"></div></div><div class="x-bar__v">78</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 4</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:90.9%"></div></div><div class="x-bar__v">95</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 3</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:80.4%"></div></div><div class="x-bar__v">84</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 2</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:40.2%"></div></div><div class="x-bar__v">42</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 1 (입직)</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:20.1%"></div></div><div class="x-bar__v">21</div></div></div></div><div class="x-block"><div class="x-block__t">페이밴드 (만원)</div><table class="x-tbl"><thead><tr><th>Grade</th><th>Min</th><th>Mid</th><th>Max</th><th>현 분포 중앙값</th></tr></thead><tbody><tr><td>8 (임원급)</td><td>13,500</td><td>16,800</td><td>20,500</td><td>17,200</td></tr><tr><td>7</td><td>9,800</td><td>12,200</td><td>14,800</td><td>12,500</td></tr><tr><td>6</td><td>7,200</td><td>8,800</td><td>10,800</td><td>9,000</td></tr><tr><td>5</td><td>5,400</td><td>6,600</td><td>8,000</td><td>6,700</td></tr><tr><td>4</td><td>4,200</td><td>5,000</td><td>6,000</td><td>5,100</td></tr></tbody></table></div></div>
+</section>
+<section class="x-page" id="HRF-203-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">평가·성과</span>
+      <h2 class="x-page__t">평가 결과 분포·이슈 추적</h2>
+    </div>
+    <span class="x-dash-id">HRF-203-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">S 등급</div><div class="x-kpi__val">8.2%</div><span class="x-kpi__ch x-kpi__ch--red">전년 9.0%</span></div><div class="x-kpi"><div class="x-kpi__lbl">A+ 등급</div><div class="x-kpi__val">18.4%</div></div><div class="x-kpi"><div class="x-kpi__lbl">A·B+ 중간</div><div class="x-kpi__val">62.7%</div><span class="x-kpi__ch x-kpi__ch--green">정규분포 양호</span></div><div class="x-kpi"><div class="x-kpi__lbl">이슈 트래킹</div><div class="x-kpi__val">12건</div><span class="x-kpi__ch x-kpi__ch--red">재평가·이의제기</span></div></div><div class="x-block"><div class="x-block__t">2025년 평가 등급 분포</div><div class="x-donut"><svg viewBox="0 0 120 120" class="x-donut-svg"><circle cx="60" cy="60" r="40" fill="none" stroke="#F1F5F9" stroke-width="14"/><circle cx="60" cy="60" r="40" fill="none" stroke="#066FA5" stroke-width="14" stroke-dasharray="20.61 251.33" stroke-dashoffset="-0.00" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#4A95BC" stroke-width="14" stroke-dasharray="46.24 251.33" stroke-dashoffset="-20.61" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#87B8D3" stroke-width="14" stroke-dasharray="80.68 251.33" stroke-dashoffset="-66.85" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#CBDFE9" stroke-width="14" stroke-dasharray="76.91 251.33" stroke-dashoffset="-147.53" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#FDE68A" stroke-width="14" stroke-dasharray="21.36 251.33" stroke-dashoffset="-224.44" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#C0392B" stroke-width="14" stroke-dasharray="5.53 251.33" stroke-dashoffset="-245.80" transform="rotate(-90 60 60)"/><text x="60" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">100%</text><text x="60" y="72" text-anchor="middle" font-size="9" fill="#94A3B8">합계</text></svg><ul class="x-donut-lg"><li><span class="x-dot" style="background:#066FA5"></span>S <b>8.2%</b></li><li><span class="x-dot" style="background:#4A95BC"></span>A+ <b>18.4%</b></li><li><span class="x-dot" style="background:#87B8D3"></span>A <b>32.1%</b></li><li><span class="x-dot" style="background:#CBDFE9"></span>B+ <b>30.6%</b></li><li><span class="x-dot" style="background:#FDE68A"></span>B <b>8.5%</b></li><li><span class="x-dot" style="background:#C0392B"></span>C·D <b>2.2%</b></li></ul></div></div><div class="x-block"><div class="x-block__t">평가 이슈 추적 (Top)</div><table class="x-tbl"><thead><tr><th>일자</th><th>유형</th><th>본부</th><th>내용</th><th>상태</th></tr></thead><tbody><tr><td>2026-04</td><td>이의제기</td><td>사업</td><td>S 등급 산정 기준 이의</td><td>조사</td></tr><tr><td>2026-03</td><td>재평가</td><td>미디어</td><td>평가자 변경 요청</td><td>완료</td></tr><tr><td>2026-02</td><td>이의제기</td><td>상품</td><td>B 등급 누적 영향 문의</td><td>답변</td></tr></tbody></table></div></div>
+</section>
+<section class="x-page" id="HRF-204-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">보상</span>
+      <h2 class="x-page__t">연봉 시뮬·총인건비 예측</h2>
+    </div>
+    <span class="x-dash-id">HRF-204-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">총인건비 (2026)</div><div class="x-kpi__val">412억</div><span class="x-kpi__ch x-kpi__ch--neutral">+2.8%</span></div><div class="x-kpi"><div class="x-kpi__lbl">총인건비 (2027 예측)</div><div class="x-kpi__val">424억</div><span class="x-kpi__ch x-kpi__ch--neutral">+2.9%</span></div><div class="x-kpi"><div class="x-kpi__lbl">인당 평균</div><div class="x-kpi__val">10,540만원</div><span class="x-kpi__ch x-kpi__ch--neutral">+2.5%</span></div><div class="x-kpi"><div class="x-kpi__lbl">정원 시뮬</div><div class="x-kpi__val">430명 가정</div><span class="x-kpi__ch x-kpi__ch--neutral">T/O 상한</span></div></div><div class="x-block"><div class="x-block__t">총인건비 예측 (억원)</div><div class="x-bars"><div class="x-bar"><div class="x-bar__lbl">2024 실적</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:80.3%"></div></div><div class="x-bar__v">387</div></div><div class="x-bar"><div class="x-bar__lbl">2025 실적</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:83.2%"></div></div><div class="x-bar__v">401</div></div><div class="x-bar"><div class="x-bar__lbl">2026 예산</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:85.5%"></div></div><div class="x-bar__v">412</div></div><div class="x-bar"><div class="x-bar__lbl">2027 예측</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:88.0%"></div></div><div class="x-bar__v">424</div></div><div class="x-bar"><div class="x-bar__lbl">2028 예측</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:90.9%"></div></div><div class="x-bar__v">438</div></div></div></div><div class="x-block"><div class="x-block__t">연봉 시뮬 (시나리오별)</div><table class="x-tbl"><thead><tr><th>시나리오</th><th>기본급 인상</th><th>성과급 풀</th><th>총인건비</th><th>vs 예산</th></tr></thead><tbody><tr><td>보수적</td><td>+1.5%</td><td>+0.5%</td><td>+2.0%</td><td>-0.8%p</td></tr><tr><td>기본</td><td>+2.5%</td><td>+0.8%</td><td>+3.3%</td><td>+0.5%p</td></tr><tr><td>적극적</td><td>+3.5%</td><td>+1.2%</td><td>+4.7%</td><td>+1.9%p</td></tr></tbody></table></div></div>
+</section>
+<section class="x-page" id="HRF-205-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">확보·개발</span>
+      <h2 class="x-page__t">CDP·핵심인재 풀 관리</h2>
+    </div>
+    <span class="x-dash-id">HRF-205-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">핵심인재 풀</div><div class="x-kpi__val">32명</div><span class="x-kpi__ch x-kpi__ch--neutral">전사 8.2%</span></div><div class="x-kpi"><div class="x-kpi__lbl">CDP 작성률</div><div class="x-kpi__val">78%</div><span class="x-kpi__ch x-kpi__ch--neutral">재직 391명 중</span></div><div class="x-kpi"><div class="x-kpi__lbl">핵심 직무 풀</div><div class="x-kpi__val">12개</div><span class="x-kpi__ch x-kpi__ch--neutral">M4 Strategic</span></div><div class="x-kpi"><div class="x-kpi__lbl">이동 권고</div><div class="x-kpi__val">8건</div><span class="x-kpi__ch x-kpi__ch--neutral">직무 fit 갭</span></div></div><div class="x-block"><div class="x-block__t">핵심인재 본부별 분포</div><div class="x-bars"><div class="x-bar"><div class="x-bar__lbl">경영기획</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:60.6%"></div></div><div class="x-bar__v">8</div></div><div class="x-bar"><div class="x-bar__lbl">사업본부</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:90.9%"></div></div><div class="x-bar__v">12</div></div><div class="x-bar"><div class="x-bar__lbl">정책지원</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:53.0%"></div></div><div class="x-bar__v">7</div></div><div class="x-bar"><div class="x-bar__lbl">감사실</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:37.9%"></div></div><div class="x-bar__v">5</div></div></div></div><div class="x-block"><div class="x-block__t">CDP 관리 현황</div><table class="x-tbl"><thead><tr><th>대상 직급</th><th>CDP 작성률</th><th>다음 이동 후보</th><th>핵심 직무 fit</th></tr></thead><tbody><tr><td>1급</td><td>100%</td><td>승계 후보</td><td>상</td></tr><tr><td>2급</td><td>92%</td><td>팀장 후보</td><td>중상</td></tr><tr><td>3급</td><td>85%</td><td>파트장·전문 트랙</td><td>중</td></tr><tr><td>4급</td><td>78%</td><td>팀 핵심 멤버</td><td>중</td></tr><tr><td>5급</td><td>65%</td><td>주니어</td><td>중하</td></tr></tbody></table></div></div>
+</section>
+<section class="x-page" id="HRF-206-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">조직개발</span>
+      <h2 class="x-page__t">조직문화·EOS 액션 운영</h2>
+    </div>
+    <span class="x-dash-id">HRF-206-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">실행 액션</div><div class="x-kpi__val">12건</div><span class="x-kpi__ch x-kpi__ch--neutral">2026 상반기</span></div><div class="x-kpi"><div class="x-kpi__lbl">완료율</div><div class="x-kpi__val">67%</div><span class="x-kpi__ch x-kpi__ch--green">8/12</span></div><div class="x-kpi"><div class="x-kpi__lbl">EOS 긍정률 변화</div><div class="x-kpi__val">+3.2%p</div><span class="x-kpi__ch x-kpi__ch--green">전기 대비</span></div><div class="x-kpi"><div class="x-kpi__lbl">Top 액션 효과</div><div class="x-kpi__val">보상 설명회</div><span class="x-kpi__ch x-kpi__ch--green">+5.8%p</span></div></div><div class="x-block"><div class="x-block__t">EOS 액션 운영 추적</div><table class="x-tbl"><thead><tr><th>액션</th><th>대상</th><th>기간</th><th>상태</th><th>EOS 영향 추정</th></tr></thead><tbody><tr><td>보상 설명회</td><td>전사</td><td>2026-04</td><td>완료</td><td>+5.8%p (보상 영역)</td></tr><tr><td>1on1 정례화</td><td>팀장 ↔ 팀원</td><td>2026-03~</td><td>진행</td><td>+2.1%p (조직개발)</td></tr><tr><td>평가자 캘리브레이션</td><td>팀장 이상</td><td>2026-05</td><td>완료</td><td>+3.4%p (평가)</td></tr><tr><td>커리어 워크숍</td><td>2~3급</td><td>2026-06</td><td>예정</td><td>-</td></tr><tr><td>부서간 협업 워크숍</td><td>전 본부</td><td>2026-07</td><td>예정</td><td>-</td></tr></tbody></table></div></div>
+</section>
+</div>
+
+</body></html>

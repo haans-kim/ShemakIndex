@@ -156,4 +156,102 @@ window.addEventListener('message',function(e){
     if(f&&f.contentWindow) f.contentWindow.postMessage(e.data,'*');
   }
 });
-</script></body></html>
+</script>
+<style id="x-extension-styles">
+.x-ext-wrap{max-width:1400px;margin:0 auto;padding:24px;font-family:'Inter','NanumBarunGothic','Malgun Gothic',system-ui,sans-serif;color:#0F172A;background:#F8FAFC}
+.x-ext-wrap *{box-sizing:border-box}
+.x-ext-hr{height:1px;background:linear-gradient(90deg,transparent,#CBD5E1,transparent);margin:32px 0 24px}
+.x-page{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:18px 22px;margin-bottom:16px}
+.x-page__h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid #F1F5F9}
+.x-page__tw{flex:1;min-width:0}
+.x-page__area{display:inline-block;font-size:10.5px;font-weight:700;color:#055A86;background:#F0F6FA;padding:2px 8px;border-radius:3px;margin-bottom:5px;letter-spacing:.02em}
+.x-page__t{font-size:16px;font-weight:700;color:#0F172A;line-height:1.4;margin:0}
+.x-dash-id{display:inline-flex;align-items:center;background:#F6F7F9;border:1px solid #EEF1F4;color:#9AA1B4;font-size:9.5px;font-weight:700;border-radius:4px;padding:3px 8px;white-space:nowrap;font-family:'Segoe UI','Malgun Gothic',Arial,sans-serif;flex:none}
+.x-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.x-kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.x-kpi{background:linear-gradient(180deg,#fff,#FAFBFC);border:1px solid #E2E8F0;border-radius:6px;padding:12px 14px}
+.x-kpi__lbl{font-size:11px;color:#64748B;margin-bottom:4px}
+.x-kpi__val{font-size:18px;font-weight:700;color:#0F172A;line-height:1.2}
+.x-kpi__ch{font-size:10.5px;font-weight:600;padding:1px 6px;border-radius:3px;display:inline-block;margin-top:2px}
+.x-kpi__ch--red{color:#C0392B;background:#FEE2E2}
+.x-kpi__ch--green{color:#059669;background:#D1FAE5}
+.x-kpi__ch--neutral{color:#64748B;background:#F1F5F9}
+.x-block{background:#fff;border:1px solid #E2E8F0;border-radius:6px;padding:14px 16px;margin-bottom:12px}
+.x-block__t{font-size:12.5px;font-weight:600;color:#1E293B;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #F1F5F9}
+.x-bars{display:flex;flex-direction:column;gap:6px}
+.x-bar{display:grid;grid-template-columns:140px 1fr 50px;gap:8px;align-items:center;font-size:11.5px}
+.x-bar__lbl{color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x-bar__trk{height:14px;background:#F1F5F9;border-radius:3px;overflow:hidden}
+.x-bar__fill{height:100%;background:linear-gradient(90deg,#4A95BC,#066FA5);border-radius:3px}
+.x-bar__fill--acc{height:100%;background:linear-gradient(90deg,#E74C3C,#C0392B);border-radius:3px}
+.x-bar__v{font-size:11px;font-weight:600;color:#1E293B;text-align:right;font-family:'Consolas',monospace}
+.x-donut{display:flex;align-items:center;gap:18px}
+.x-donut-svg{width:140px;height:140px;flex:none}
+.x-donut-lg{list-style:none;padding:0;flex:1;margin:0}
+.x-donut-lg li{font-size:11.5px;color:#334155;padding:3px 0;display:flex;align-items:center;gap:6px}
+.x-dot{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+.x-donut-lg b{margin-left:auto;color:#0F172A;font-family:'Consolas',monospace}
+.x-hm{display:grid;gap:2px;font-size:10.5px}
+.x-hm__c{}
+.x-hm__ch{font-size:10px;font-weight:600;color:#475569;padding:4px 6px;text-align:center;background:#F8FAFC;border-radius:3px}
+.x-hm__rh{font-size:10.5px;font-weight:600;color:#334155;padding:6px 8px;text-align:right;white-space:nowrap}
+.x-hm__cell{padding:8px 4px;text-align:center;border-radius:3px;font-weight:600;font-family:'Consolas',monospace}
+.x-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.x-tbl th{background:#F8FAFC;color:#334155;font-weight:600;padding:7px 10px;text-align:left;border-bottom:2px solid #E2E8F0;font-size:11px}
+.x-tbl td{padding:6px 10px;border-bottom:1px solid #F1F5F9;color:#334155}
+.x-tbl tr:hover td{background:#F0F6FA}
+.x-ins{background:linear-gradient(180deg,#F0F9FF,#fff);border:1px solid #CBDFE9;border-radius:6px;padding:13px 16px;margin-bottom:12px}
+.x-ins__t{font-size:12px;font-weight:700;color:#055A86;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.x-ins__l{list-style:none;padding:0;margin:0}
+.x-ins__l li{font-size:12px;color:#334155;padding:4px 0;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.x-ins-i{flex:none;font-size:13px;line-height:1.4}
+.x-act{background:#fff;border:1px solid #E2E8F0;border-left:3px solid #066FA5;border-radius:6px;padding:13px 16px}
+.x-act__t{font-size:12px;font-weight:700;color:#0F172A;margin-bottom:8px}
+.x-act__l{list-style:none;padding:0;margin:0}
+.x-act__l li{font-size:12px;color:#334155;padding:5px 0;display:flex;gap:8px;align-items:center}
+.x-act-p{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex:none;letter-spacing:.04em}
+.x-act-p--High{background:#FEE2E2;color:#C0392B}
+.x-act-p--Mid{background:#FEF3C7;color:#D97706}
+.x-act-p--Low{background:#F1F5F9;color:#64748B}
+.x-ph{padding:40px 24px;text-align:center;border:1px dashed #CBD5E1;border-radius:6px;color:#475569}
+.x-ph p{font-size:13px;margin-bottom:6px}
+.x-ph .sub{font-size:11px;color:#94A3B8;font-style:italic}
+@media (max-width:768px){.x-kpi-strip{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="x-ext-wrap">
+  <div class="x-ext-hr"></div>
+  
+<section class="x-page" id="AG-201-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">평가·성과</span>
+      <h2 class="x-page__t">팀 성과·MBO 진척 트래킹</h2>
+    </div>
+    <span class="x-dash-id">AG-201-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">팀 MBO 진척</div><div class="x-kpi__val">68%</div><span class="x-kpi__ch x-kpi__ch--neutral">분기 중간</span></div><div class="x-kpi"><div class="x-kpi__lbl">On-track 목표</div><div class="x-kpi__val">5/8</div></div><div class="x-kpi"><div class="x-kpi__lbl">Risk 목표</div><div class="x-kpi__val">2/8</div><span class="x-kpi__ch x-kpi__ch--red">지연 ≥ 2주</span></div><div class="x-kpi"><div class="x-kpi__lbl">팀 성과 등급 예측</div><div class="x-kpi__val">A</div><span class="x-kpi__ch x-kpi__ch--neutral">중간 시점</span></div></div><div class="x-block"><div class="x-block__t">MBO 목표별 진척률 (%)</div><div class="x-bars"><div class="x-bar"><div class="x-bar__lbl">매출 달성</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:71.1%"></div></div><div class="x-bar__v">72</div></div><div class="x-bar"><div class="x-bar__lbl">고객 만족</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:84.0%"></div></div><div class="x-bar__v">85</div></div><div class="x-bar"><div class="x-bar__lbl">신규 개척</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:44.5%"></div></div><div class="x-bar__v">45</div></div><div class="x-bar"><div class="x-bar__lbl">프로세스 개선</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:77.1%"></div></div><div class="x-bar__v">78</div></div><div class="x-bar"><div class="x-bar__lbl">교육 이수</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:90.9%"></div></div><div class="x-bar__v">92</div></div><div class="x-bar"><div class="x-bar__lbl">협업 프로젝트</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:37.5%"></div></div><div class="x-bar__v">38</div></div><div class="x-bar"><div class="x-bar__lbl">품질 지표</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:69.2%"></div></div><div class="x-bar__v">70</div></div><div class="x-bar"><div class="x-bar__lbl">BSC 학습</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:87.0%"></div></div><div class="x-bar__v">88</div></div></div></div><div class="x-ins"><div class="x-ins__t">주요 인사이트</div><ul class="x-ins__l"><li><span class="x-ins-i">⚠️</span><span>신규 개척·협업 프로젝트 진척 < 50% — 다음 1on1 우선 의제</span></li><li><span class="x-ins-i">✅</span><span>고객 만족·교육은 목표 초과 진행</span></li></ul></div></div>
+</section>
+<section class="x-page" id="AG-202-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">보상</span>
+      <h2 class="x-page__t">직무급 시뮬 (본인 직무 가치 기반)</h2>
+    </div>
+    <span class="x-dash-id">AG-202-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">본인 직무</div><div class="x-kpi__val">OOO</div><span class="x-kpi__ch x-kpi__ch--neutral">J0XX</span></div><div class="x-kpi"><div class="x-kpi__lbl">직무 가치 (Grade)</div><div class="x-kpi__val">5급</div><span class="x-kpi__ch x-kpi__ch--neutral">M4 산출</span></div><div class="x-kpi"><div class="x-kpi__lbl">현재 연봉</div><div class="x-kpi__val">OOOO만원</div><span class="x-kpi__ch x-kpi__ch--neutral">Mid 위치</span></div><div class="x-kpi"><div class="x-kpi__lbl">직무급 시뮬 결과</div><div class="x-kpi__val">+3.2%</div><span class="x-kpi__ch x-kpi__ch--green">직무 가치 반영</span></div></div><div class="x-block"><div class="x-block__t">본인 vs 동일 Grade 평균 (만원)</div><div class="x-bars"><div class="x-bar"><div class="x-bar__lbl">본인 (현재)</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:70.5%"></div></div><div class="x-bar__v">6200</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 5 중앙값</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:75.0%"></div></div><div class="x-bar__v">6600</div></div><div class="x-bar"><div class="x-bar__lbl">직무급 시뮬</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:72.7%"></div></div><div class="x-bar__v">6398</div></div><div class="x-bar"><div class="x-bar__lbl">Grade 5 Max</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:90.9%"></div></div><div class="x-bar__v">8000</div></div></div></div><div class="x-block"><div class="x-block__t">직무 가치 산정 근거 (15차원, 본인 직무)</div><table class="x-tbl"><thead><tr><th>차원</th><th>점수</th><th>Grade 5 평균</th></tr></thead><tbody><tr><td>전략 기여</td><td>3.5</td><td>3.2</td></tr><tr><td>의사결정 영향</td><td>3.0</td><td>2.8</td></tr><tr><td>전문성</td><td>4.0</td><td>3.5</td></tr><tr><td>복잡성</td><td>3.5</td><td>3.3</td></tr><tr><td>...</td><td>...</td><td>...</td></tr></tbody></table></div></div>
+</section>
+<section class="x-page" id="AG-203-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">조직개발</span>
+      <h2 class="x-page__t">팀원 몰입도·소통 진단</h2>
+    </div>
+    <span class="x-dash-id">AG-203-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">팀 평균 몰입도</div><div class="x-kpi__val">3.42</div><span class="x-kpi__ch x-kpi__ch--neutral">5점 만점</span></div><div class="x-kpi"><div class="x-kpi__lbl">저몰입 인원</div><div class="x-kpi__val">1명</div><span class="x-kpi__ch x-kpi__ch--red">팀원 8명 중</span></div><div class="x-kpi"><div class="x-kpi__lbl">1on1 만족도</div><div class="x-kpi__val">4.1</div><span class="x-kpi__ch x-kpi__ch--green">지난 분기</span></div><div class="x-kpi"><div class="x-kpi__lbl">팀 소통 빈도</div><div class="x-kpi__val">주 3회</div><span class="x-kpi__ch x-kpi__ch--neutral">정기 회의 외</span></div></div><div class="x-row"><div class="x-block"><div class="x-block__t">팀 4몰입유형 분포</div><div class="x-donut"><svg viewBox="0 0 120 120" class="x-donut-svg"><circle cx="60" cy="60" r="40" fill="none" stroke="#F1F5F9" stroke-width="14"/><circle cx="60" cy="60" r="40" fill="none" stroke="#066FA5" stroke-width="14" stroke-dasharray="62.83 251.33" stroke-dashoffset="-0.00" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#4A95BC" stroke-width="14" stroke-dasharray="125.66 251.33" stroke-dashoffset="-62.83" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#FDE68A" stroke-width="14" stroke-dasharray="31.42 251.33" stroke-dashoffset="-188.50" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="40" fill="none" stroke="#C0392B" stroke-width="14" stroke-dasharray="31.42 251.33" stroke-dashoffset="-219.91" transform="rotate(-90 60 60)"/><text x="60" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#0F172A">8명</text><text x="60" y="72" text-anchor="middle" font-size="9" fill="#94A3B8">합계</text></svg><ul class="x-donut-lg"><li><span class="x-dot" style="background:#066FA5"></span>고몰입 (E1) <b>25%</b></li><li><span class="x-dot" style="background:#4A95BC"></span>일반 (E2) <b>50%</b></li><li><span class="x-dot" style="background:#FDE68A"></span>조용한 사직 (E3) <b>12.5%</b></li><li><span class="x-dot" style="background:#C0392B"></span>저몰입 (E4) <b>12.5%</b></li></ul></div></div><div class="x-block"><div class="x-block__t">팀원별 소통 점수 (5점)</div><div class="x-bars"><div class="x-bar"><div class="x-bar__lbl">팀원 A</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:90.9%"></div></div><div class="x-bar__v">4.5</div></div><div class="x-bar"><div class="x-bar__lbl">팀원 B</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:84.8%"></div></div><div class="x-bar__v">4.2</div></div><div class="x-bar"><div class="x-bar__lbl">팀원 C</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:76.8%"></div></div><div class="x-bar__v">3.8</div></div><div class="x-bar"><div class="x-bar__lbl">팀원 D</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:70.7%"></div></div><div class="x-bar__v">3.5</div></div><div class="x-bar"><div class="x-bar__lbl">팀원 E</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:64.6%"></div></div><div class="x-bar__v">3.2</div></div><div class="x-bar"><div class="x-bar__lbl">팀원 F</div><div class="x-bar__trk"><div class="x-bar__fill--acc" style="width:56.6%"></div></div><div class="x-bar__v">2.8</div></div><div class="x-bar"><div class="x-bar__lbl">팀원 G</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:80.8%"></div></div><div class="x-bar__v">4.0</div></div><div class="x-bar"><div class="x-bar__lbl">팀원 H</div><div class="x-bar__trk"><div class="x-bar__fill" style="width:72.7%"></div></div><div class="x-bar__v">3.6</div></div></div></div></div></div>
+</section>
+</div>
+
+</body></html>

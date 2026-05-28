@@ -200,7 +200,7 @@ export function ShemakIndex() {
                       className="grid grid-cols-[200px_repeat(6,1fr)] gap-2.5 mb-2.5 items-stretch"
                     >
                       {/* Row label */}
-                      <div className="flex items-center pl-8 pr-2">
+                      <div className="flex items-center pl-16 pr-2">
                         <span className="text-[15px] leading-snug break-keep">
                           <span className="font-bold text-slate-900">
                             {row.code}

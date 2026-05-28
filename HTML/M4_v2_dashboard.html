@@ -630,4 +630,82 @@ updateDashId('s1');
   setTimeout(function(){ sendMenu(); sendBadge(); }, 0);
 })();
 </script>
+
+<style id="x-extension-styles">
+.x-ext-wrap{max-width:1400px;margin:0 auto;padding:24px;font-family:'Inter','NanumBarunGothic','Malgun Gothic',system-ui,sans-serif;color:#0F172A;background:#F8FAFC}
+.x-ext-wrap *{box-sizing:border-box}
+.x-ext-hr{height:1px;background:linear-gradient(90deg,transparent,#CBD5E1,transparent);margin:32px 0 24px}
+.x-page{background:#fff;border:1px solid #E2E8F0;border-radius:8px;padding:18px 22px;margin-bottom:16px}
+.x-page__h{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid #F1F5F9}
+.x-page__tw{flex:1;min-width:0}
+.x-page__area{display:inline-block;font-size:10.5px;font-weight:700;color:#055A86;background:#F0F6FA;padding:2px 8px;border-radius:3px;margin-bottom:5px;letter-spacing:.02em}
+.x-page__t{font-size:16px;font-weight:700;color:#0F172A;line-height:1.4;margin:0}
+.x-dash-id{display:inline-flex;align-items:center;background:#F6F7F9;border:1px solid #EEF1F4;color:#9AA1B4;font-size:9.5px;font-weight:700;border-radius:4px;padding:3px 8px;white-space:nowrap;font-family:'Segoe UI','Malgun Gothic',Arial,sans-serif;flex:none}
+.x-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.x-kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.x-kpi{background:linear-gradient(180deg,#fff,#FAFBFC);border:1px solid #E2E8F0;border-radius:6px;padding:12px 14px}
+.x-kpi__lbl{font-size:11px;color:#64748B;margin-bottom:4px}
+.x-kpi__val{font-size:18px;font-weight:700;color:#0F172A;line-height:1.2}
+.x-kpi__ch{font-size:10.5px;font-weight:600;padding:1px 6px;border-radius:3px;display:inline-block;margin-top:2px}
+.x-kpi__ch--red{color:#C0392B;background:#FEE2E2}
+.x-kpi__ch--green{color:#059669;background:#D1FAE5}
+.x-kpi__ch--neutral{color:#64748B;background:#F1F5F9}
+.x-block{background:#fff;border:1px solid #E2E8F0;border-radius:6px;padding:14px 16px;margin-bottom:12px}
+.x-block__t{font-size:12.5px;font-weight:600;color:#1E293B;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid #F1F5F9}
+.x-bars{display:flex;flex-direction:column;gap:6px}
+.x-bar{display:grid;grid-template-columns:140px 1fr 50px;gap:8px;align-items:center;font-size:11.5px}
+.x-bar__lbl{color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.x-bar__trk{height:14px;background:#F1F5F9;border-radius:3px;overflow:hidden}
+.x-bar__fill{height:100%;background:linear-gradient(90deg,#4A95BC,#066FA5);border-radius:3px}
+.x-bar__fill--acc{height:100%;background:linear-gradient(90deg,#E74C3C,#C0392B);border-radius:3px}
+.x-bar__v{font-size:11px;font-weight:600;color:#1E293B;text-align:right;font-family:'Consolas',monospace}
+.x-donut{display:flex;align-items:center;gap:18px}
+.x-donut-svg{width:140px;height:140px;flex:none}
+.x-donut-lg{list-style:none;padding:0;flex:1;margin:0}
+.x-donut-lg li{font-size:11.5px;color:#334155;padding:3px 0;display:flex;align-items:center;gap:6px}
+.x-dot{width:10px;height:10px;border-radius:2px;display:inline-block;flex:none}
+.x-donut-lg b{margin-left:auto;color:#0F172A;font-family:'Consolas',monospace}
+.x-hm{display:grid;gap:2px;font-size:10.5px}
+.x-hm__c{}
+.x-hm__ch{font-size:10px;font-weight:600;color:#475569;padding:4px 6px;text-align:center;background:#F8FAFC;border-radius:3px}
+.x-hm__rh{font-size:10.5px;font-weight:600;color:#334155;padding:6px 8px;text-align:right;white-space:nowrap}
+.x-hm__cell{padding:8px 4px;text-align:center;border-radius:3px;font-weight:600;font-family:'Consolas',monospace}
+.x-tbl{width:100%;border-collapse:collapse;font-size:11.5px}
+.x-tbl th{background:#F8FAFC;color:#334155;font-weight:600;padding:7px 10px;text-align:left;border-bottom:2px solid #E2E8F0;font-size:11px}
+.x-tbl td{padding:6px 10px;border-bottom:1px solid #F1F5F9;color:#334155}
+.x-tbl tr:hover td{background:#F0F6FA}
+.x-ins{background:linear-gradient(180deg,#F0F9FF,#fff);border:1px solid #CBDFE9;border-radius:6px;padding:13px 16px;margin-bottom:12px}
+.x-ins__t{font-size:12px;font-weight:700;color:#055A86;margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em}
+.x-ins__l{list-style:none;padding:0;margin:0}
+.x-ins__l li{font-size:12px;color:#334155;padding:4px 0;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.x-ins-i{flex:none;font-size:13px;line-height:1.4}
+.x-act{background:#fff;border:1px solid #E2E8F0;border-left:3px solid #066FA5;border-radius:6px;padding:13px 16px}
+.x-act__t{font-size:12px;font-weight:700;color:#0F172A;margin-bottom:8px}
+.x-act__l{list-style:none;padding:0;margin:0}
+.x-act__l li{font-size:12px;color:#334155;padding:5px 0;display:flex;gap:8px;align-items:center}
+.x-act-p{font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;flex:none;letter-spacing:.04em}
+.x-act-p--High{background:#FEE2E2;color:#C0392B}
+.x-act-p--Mid{background:#FEF3C7;color:#D97706}
+.x-act-p--Low{background:#F1F5F9;color:#64748B}
+.x-ph{padding:40px 24px;text-align:center;border:1px dashed #CBD5E1;border-radius:6px;color:#475569}
+.x-ph p{font-size:13px;margin-bottom:6px}
+.x-ph .sub{font-size:11px;color:#94A3B8;font-style:italic}
+@media (max-width:768px){.x-kpi-strip{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="x-ext-wrap">
+  <div class="x-ext-hr"></div>
+  
+<section class="x-page" id="PAN-140-20260528">
+  <header class="x-page__h">
+    <div class="x-page__tw">
+      <span class="x-page__area">보상</span>
+      <h2 class="x-page__t">직무등급-보상 input (직무급)</h2>
+    </div>
+    <span class="x-dash-id">PAN-140-20260528</span>
+  </header>
+  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">준비 중</div><div class="x-kpi__val">Coming</div></div><div class="x-kpi"><div class="x-kpi__lbl">연관 모듈</div><div class="x-kpi__val">M4 Pan HR (직무업무 가치)</div></div><div class="x-kpi"><div class="x-kpi__lbl">HR 영역</div><div class="x-kpi__val">보상</div></div><div class="x-kpi"><div class="x-kpi__lbl">ID</div><div class="x-kpi__val">PAN-140-20260528</div></div></div><div class="x-ph"><p>"직무등급-보상 input (직무급)"</p><p class="sub">알고리즘은 개발요청서에서 정의</p></div></div>
+</section>
+</div>
+
 </body></html>
