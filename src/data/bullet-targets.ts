@@ -1,6 +1,6 @@
 // AUTO-GENERATED from Control-Tower_불릿_페이지_매핑.xlsx — 재생성 스크립트로만 수정
 // 정적문서: anchor=HTML 실제 id(#점프) · 대시보드(pan-*): anchor=PAN prefix(?sec= 점프)
-export type BulletTarget = { file: string; anchor: string | null; label: string };
+export type BulletTarget = { file: string; anchor: string | null; label: string; view?: string };
 
 // key: `${rowId}|${colId}|${bulletIndex}`
 export const BULLET_TARGETS: Record<string, BulletTarget> = {
@@ -30,10 +30,10 @@ export const BULLET_TARGETS: Record<string, BulletTarget> = {
   "agents-2|development|0": { file: "hr-function", anchor: "HRF-205-20260528", label: "[신규] CDP·핵심인재 풀 관리" },
   "agents-2|orgDev|0": { file: "hr-function", anchor: "HRF-206-20260528", label: "[신규] 조직문화·EOS 액션 운영" },
   "agents-3|orgOps|0": { file: "hr-member", anchor: null, label: "본인·팀원 업무 부하 시각화" },
-  "agents-3|promotion|0": { file: "hr-member", anchor: null, label: "직무등급·승진 가능성" },
+  "agents-3|promotion|0": { file: "hr-member", anchor: null, view: "tl", label: "직무등급·승진 가능성 (팀장 뷰 · AG-003)" },
   "agents-3|performance|0": { file: "hr-member", anchor: "AG-201-20260528", label: "[신규] 팀 성과·MBO 진척 트래킹" },
   "agents-3|compensation|0": { file: "hr-member", anchor: "AG-202-20260528", label: "[신규] 직무급 시뮬 (본인 직무 가치 기반)" },
-  "agents-3|development|0": { file: "hr-member", anchor: null, label: "본인 커리어 패스·필요 스킬" },
+  "agents-3|development|0": { file: "hr-member", anchor: null, view: "tm", label: "본인 커리어 패스·필요 스킬 (팀원 뷰 · AG-012)" },
   "agents-3|orgDev|0": { file: "hr-member", anchor: "AG-203-20260528", label: "[신규] 팀원 몰입도·소통 진단" },
   "m0|orgOps|0": { file: "pan-m0", anchor: "PAN-001", label: "Overview" },
   "m0|orgOps|1": { file: "pan-m0", anchor: "PAN-009", label: "Simulation" },

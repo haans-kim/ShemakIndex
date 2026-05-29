@@ -137,7 +137,12 @@ function ModuleCard({
             <li key={i}>
               <a
                 href={`/${target.file}.html${
-                  target.anchor ? `?sec=${target.anchor}` : ""
+                  [
+                    target.anchor ? `sec=${target.anchor}` : null,
+                    target.view ? `view=${target.view}` : null,
+                  ]
+                    .filter(Boolean)
+                    .reduce((q, p) => (q ? `${q}&${p}` : `?${p}`), "")
                 }`}
                 className={cn(liClass, "hover:underline")}
               >
