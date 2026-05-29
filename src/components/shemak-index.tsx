@@ -12,6 +12,11 @@ type SectionStyle = {
   bullet: string;
 };
 
+// 라우팅은 정상이나 화면 본체가 미구축(클릭 시 백지)인 PAN 코드.
+// 카드 전체가 미구축이면 shemak-data의 cell.active=false로 카드를 회색 처리하고,
+// 작동 불릿과 섞인 카드(예: M0 조직운영)는 아래 코드로 해당 불릿만 회색·비활성 처리한다.
+const WIP_ANCHORS = new Set(["PAN-006", "PAN-007", "PAN-008", "PAN-009", "PAN-019"]);
+
 const SECTION_STYLE: Record<string, SectionStyle> = {
   optic: {
     header: "border-violet-400 bg-violet-50",
@@ -130,6 +135,21 @@ function ModuleCard({
                   )}
                 />
                 <span>{b}</span>
+              </li>
+            );
+          }
+          // 화면 미구축 불릿 — 작동 불릿과 같은 카드에 섞여 있어 카드는 살리고 링크만 회색·비활성.
+          if (target.anchor && WIP_ANCHORS.has(target.anchor)) {
+            return (
+              <li
+                key={i}
+                className="flex gap-1.5 text-[14px] leading-snug font-medium text-slate-400"
+              >
+                <span className="mt-[5px] h-1 w-1 rounded-full bg-slate-300 shrink-0" />
+                <span className="flex-1">{b}</span>
+                <span className="ml-1 shrink-0 self-start rounded px-1.5 py-0.5 text-[11px] font-semibold text-slate-500 bg-slate-200">
+                  개발 중
+                </span>
               </li>
             );
           }

@@ -107,10 +107,10 @@ export const SECTIONS: SectionData[] = [
         cells: {
           orgOps: { bullets: ["본부·실·팀·개인 적정인력 예측", "인력 시뮬레이션 (시점별·동인별)"], active: true },
           promotion: { bullets: ["등급 피라미드 적정성 진단"], active: true },
-          performance: { bullets: ["인당 생산성 모니터링"], active: true },
-          compensation: { bullets: ["인건비 시뮬 (정원 × 페이밴드)"], active: true },
-          development: { bullets: ["채용 계획·정원 갭 충원 시나리오"], active: true },
-          orgDev: { bullets: ["조직 재설계 시 인력 재배치 시뮬"], active: true },
+          performance: { bullets: ["인당 생산성 모니터링"], active: false },
+          compensation: { bullets: ["인건비 시뮬 (정원 × 페이밴드)"], active: false },
+          development: { bullets: ["채용 계획·정원 갭 충원 시나리오"], active: false },
+          orgDev: { bullets: ["조직 재설계 시 인력 재배치 시뮬"], active: false },
         },
       },
       {
