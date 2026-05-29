@@ -131,3 +131,81 @@ M3는 초기화 로직이 여러 겹(setModule 가드 + `state.txModule`↔`stat
 - **`bullet-targets.ts` 재생성**: `Control-Tower_불릿_페이지_매핑.xlsx`를 읽어 `(rowId|colId|bulletIndex) → {file, anchor}` 생성. 정적문서는 HTML 스캔으로 실제 id를, 대시보드는 PAN prefix를 anchor로. (엑셀↔data.ts는 행/열/불릿 순서가 1:1 일치. 단 키 이름은 엑셀 `grade/perf/comp/talent` ↔ data `promotion/performance/compensation/development`.)
 - **public HTML 핸들러**: `HTML/`(또는 `~/Downloads/3. 세아용_최종`) 최신본으로 재복사하면 핸들러가 사라지므로 재삽입 필요. **빌드 시 자동 주입 스크립트로 만드는 것을 권장**(현재는 수동 삽입).
 - **배포**: 커밋/푸시 → Ubuntu `/opt/ShemakIndex`(root 소유)에서 `sudo git pull origin main && sudo docker compose up -d --build`. 도메인/SSL은 맥미니 Caddy가 처리(Ubuntu엔 nginx/certbot 없음). 도메인 `shemak-index.insightgroup.biz` → `:3100`.
+
+---
+
+## 8. 2026-05-29 세션 수정 이력 (핸들러 정본화 + 매핑 수정)
+
+> 이 섹션은 **다른 세션이 이어받을 때**를 위한 인수인계 기록. 위 5·6장(2026-05-28 시점)의 일부 내용은 아래로 갱신됨.
+> 관련 커밋: `c6cbd54`(M4·optic SHAP) · `3a34643`(secjump 정본 9파일) · `78a1377`(agents-3 ?view=).
+
+### 8.1 secjump 진입 핸들러 정본화 — §5 핸들러를 전면 교체
+
+**발견한 근본 버그(중요):** 일부 페이지(특히 `ceo`)는 로드 시 자기 해시(`#/main/overview`)를 설정하는데, 기존 `getSec()`가 **`location.hash`를 `?sec=`보다 먼저** 읽어 엉뚱한 값으로 점프 실패. → ceo 전 섹션이 "맨 위 다른 섹션"만 보이던 증상의 원인. (스크롤 타이밍 문제로 오해하기 쉬움. `window.scrollY`가 끝까지 0이면 스크롤이 아니라 **잘못된 sec를 읽은 것**을 의심할 것.)
+
+**9개 public HTML 전부 동일한 정본 핸들러로 교체.** 핵심 동작:
+- `?sec=`를 `location.hash`보다 **우선** 읽음.
+- 읽은 직후 `history.replaceState`로 **`?sec=` 제거**(1회성 — 앱 내부 해시 네비게이션과 충돌·재점프 fighting 방지). `hashchange` 리스너 제거.
+- `done` 플래그로 1회만 점프.
+- 스크롤은 `ResizeObserver`(body 크기 변동=차트 늦은 렌더 시 재정렬) + 250ms×12 안전 인터벌 후 정리. **사용자 스크롤은 안 건드림**(ResizeObserver는 레이아웃 변동에만 반응).
+- DASH_CODE 분기(M0/M1/M3/M4 뷰 전환)는 §5와 동일하게 보존.
+
+### 8.2 M4 매핑 swap + PAN-140 슬라이드화 (`pan-m4.html`)
+- `DASH_CODE`의 **s3↔s6 PAN 코드가 뒤바뀌어** 있었음 → promotion(PAN-041)·performance(PAN-042)가 서로 페이지로 이동. 정본(엑셀 `대시보드_섹션_인벤토리`)대로 s3=PAN-042, s6=PAN-041로 수정.
+- PAN-140("직무등급-보상 input")은 `.x-ext-wrap`(앱 셸 바깥, height:100vh 밖)에 붙은 "준비 중" placeholder라, 점프 시 앱 전체가 화면 밖으로 밀려 깨졌음 → **정식 슬라이드 `s12`로 편입**(nav·DASH_CODE 등록), x-ext placeholder 제거.
+
+### 8.3 optic 점프 안착 (`optic-view.html`)
+- OPT-201~210은 `.x-ext-wrap`(content-area 내부스크롤 바깥, window 스크롤). 무거운 차트(2.3MB)가 늦게 렌더돼 단발 스크롤이 빗나가던 것 → 8.1 ResizeObserver 방식으로 해결.
+- 마지막 섹션(OPT-210)이 문서 끝이라 top 정렬 불가 → `.x-ext-wrap{padding-bottom:80vh}` + `.x-page{scroll-margin-top:64px}`(sticky 헤더 52px 회피)로 맨 위 정착.
+- OPT-201~209는 실제 콘텐츠, **OPT-210(SHAP What-If)만 "준비 중" placeholder**(콘텐츠 미구축, 라우팅은 정상).
+
+### 8.4 agents-3 (hr-member, 실장·팀장·팀원) 역할 뷰 자동 선택 — `?view=`
+- **구조 발견:** hr-member 역할 뷰는 `iframe`(`f-dir`/`f-tl`/`f-tm`)에 **base64 HTML을 `srcdoc`로 주입**(`DIRECTOR.leader`/`TEAMS[ti].leader`/`members[mi].b`). 그래서 정적 텍스트 검색에 콘텐츠가 안 잡힘 — **누락 아님, 다 있음.**
+- **역할↔화면 매핑(코드 `lastPageIds`가 정본):** dir(실장)=AG-001 · tl(팀장)=AG-003 · tm(팀원)=AG-012. 신규 AG-201/202/203(perf/comp/orgDev)은 x-ext-wrap(역할 무관).
+- 기존엔 promotion·development 불릿이 `anchor=null`이라 기본 실장 뷰로만 진입 → 역할 수동 전환 필요했음.
+- **수정:** `BulletTarget`에 `view` 필드 추가(promotion=tl, development=tm) → `shemak-index.tsx`가 링크에 `?view=` 생성(`?sec=`와 병행) → hr-member에 `?view=` 읽어 `show(role)` 호출하는 init(`<script data-viewjump>`) 주입. orgOps(AG-001)는 기본 dir이라 변경 불필요.
+
+### 8.5 갱신된 상태표
+
+| 대상 | 점프 상태 (2026-05-29) |
+|------|------------------------|
+| optic-view (OPT-002/003/005, 201~210) | ✅ 정상 (OPT-210은 콘텐츠 "준비 중") |
+| ceo (CEO-201~206) | ✅ 정상 (해시 클로버링 수정으로 해결) |
+| hr-function (HRF-201~206) | ✅ 정상 |
+| hr-member (AG-001/003/012=역할, AG-201/202/203=x-ext) | ✅ 정상 (`?view=` 연동) |
+| M2 (PAN-020) | ✅ 단일 뷰 |
+| M4 (PAN-040~047, 140) | ✅ 정상 (swap·슬라이드화 수정) |
+| M3 (M3-1/M3-6/BFM/M3-DEV) | ✅ **정상** (`embed=1` 쿼리 보존 수정으로 해결) |
+| M0 (작동 셀) | ✅ overview(orgOps)/persons(promotion) |
+| M1 (작동 셀) | ✅ 전사/본부/실/팀/개인 |
+| **M0/M1 (미구축 화면)** | ⚠️ 점프는 정상, **대상 화면 본체가 없음** (8.6 참고) |
+
+### 8.6 매핑 안 된 화면 = 미구축 (직원 확인 / 신규 구축 필요)
+
+> 2026-05-29 전수 점검(브라우저+grep) 결과, **불릿이 실제 구축된 화면에 도달 못 하는 셀**은 아래 4개 화면뿐. 모두 라우팅 문제가 아니라 **화면 본체 미구축**(원본 mockup에도 DASH_CODE에 번호만 있고 render·뷰 없음). hr-member처럼 iframe에 숨은 콘텐츠도 없음을 grep으로 확인.
+
+| 화면번호 | 화면명(엑셀) | 모듈 | 영향 셀 | 상태 |
+|---|---|---|---|---|
+| **PAN-007** | process·채용 | M0 | development | ❌ 백지 |
+| **PAN-008** | Data | M0 | compensation | ❌ 백지 |
+| **PAN-009** | Simulation | M0 | orgOps(2)·orgDev | ❌ 백지 |
+| **PAN-019** | 동인 트렌드 | M1 | orgDev | ❌ 백지 |
+| PAN-006 | Tasks | M0 | performance | △ 뷰는 뜨나 인물 미선택 시 빈 목록 |
+
+- **확정 미구축 = 4종**(M0 PAN-007/008/009, M1 PAN-019). 원본 `M0_대시보드_mockup_masked.html`·`M1_…`과 대조해도 동일(파일 복사 문제 아님). → 화면 신규 구축, 또는 불릿 `anchor=null`로 진입만, 중 택일 필요.
+- **참고(반대 방향, 고아 화면):** 엑셀 인벤토리엔 있으나 불릿이 안 가리키는 화면도 존재 — M4 PAN-043(Grade 산포)·044(Grade×BFM), 실장팀장팀원 AG-002·004~011 등. "매핑 안 됨"과 별개로 검토 대상.
+
+#### M3 해결 기록 (구 §6·8.6 미해결 → 2026-05-29 해결)
+- **진짜 원인:** pan-m3.html `<head>` 최상단의 `history.replaceState(null,"","?embed=1")`가 로드 즉시 URL을 `?embed=1`로 덮어써 **`?sec=`를 삭제** → secjump가 빈 값을 읽고 종료 → 모든 점프가 기본 M3-1로. (init override가 아니라 쿼리 클로버링이었음.)
+- **수정:** head 재작성을 기존 쿼리 보존(`URLSearchParams`로 `embed=1`만 추가)으로 변경 + `__setView`에 init 대비 재적용(drift 가드, 2.5s) 추가. PAN-030/031/032/033 전부 배지 일치 검증.
+
+### 8.7 향후 세션 주의사항 (gotcha)
+
+- **인덱스(TS) 변경은 Next.js rebuild 필요.** 지금까지의 HTML 수정은 `public/` 정적 파일이라 새로고침/파일복사로 반영됐지만, `shemak-index.tsx`·`bullet-targets.ts` 변경(예: `?view=`)은 **dev에선 `Cmd+Shift+R` 강력 새로고침**, **배포본은 `--build` 재빌드**가 있어야 반영됨. "링크 클릭해도 안 바뀐다"의 99%는 이것.
+- **점프 안 됨 디버깅:** `window.scrollY`가 0 그대로면 스크롤 타이밍이 아니라 **secjump가 잘못된 값을 읽은 것**(해시 클로버링 등)을 먼저 의심. `el.scrollIntoView()`를 콘솔에서 수동 호출해 되면 핸들러 입력 문제.
+- **hr-member 콘텐츠는 base64 iframe srcdoc** — 정적 grep으로 "커리어/직무등급" 검색하면 0건이지만 실제론 있음. `lastPageIds`로 역할↔AG 매핑 확인.
+- **PAN-140류 placeholder:** `.x-ext-wrap`은 height:100vh 앱 셸 바깥이라 슬라이드형 SPA(M4)에선 점프 시 레이아웃이 깨짐 → 정식 슬라이드로 편입해야 함. 스크롤형 페이지(optic/ceo)에선 padding-bottom+scroll-margin-top으로 top 정착.
+- **`?sec=`는 점프 후 URL에서 제거됨**(정본 핸들러) — 의도된 동작. `?view=`는 유지(앱 해시와 무관).
+- **head의 URL 강제 재작성 주의(M3 사례):** 일부 페이지가 `<head>` 최상단에서 `history.replaceState(...,"?embed=1")`로 URL을 덮어써 `?sec=`를 삭제함. 이러면 모든 점프가 기본 화면으로만 보임. **secjump가 잘못 동작하면 `<head>`의 replaceState/location 재작성부터 grep**할 것. 재작성은 반드시 기존 쿼리를 보존해야 함(`URLSearchParams`로 키만 추가).
+- **미구축 화면 판별:** 점프 후 백지면 그 화면번호(PAN-xxx)가 DASH_CODE엔 있어도 render 분기·뷰가 없는 것. 원본 mockup(`~/Downloads/3. 세아용_최종/5. Pan HR/...`)과 grep 대조로 "복사 누락 vs 원래 미구축" 구분. M0 process/data/simulation·M1 trend = 원래 미구축 확정.
+- **headless browse(gstack)는 무거운 페이지(2~5MB)에서 불안정** — 뷰포트 스크린샷이 백지로 나오거나 세션 재시작됨. 위치 검증은 `js`로 `getBoundingClientRect().top` 측정이 더 신뢰성 높음.
