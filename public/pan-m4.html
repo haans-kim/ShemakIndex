@@ -292,7 +292,7 @@ svg#scatter-grade circle:hover{r:4.5}
   <div class="spacer"></div>
   <span class="dash-id" id="dash-id"></span>
 </div>
-<nav class="sidebar"><div class="nav-group">M4 직무업무평가</div><div class="nav-item active" data-target="s1" onclick="show('s1', this)">프레임워크</div><div class="nav-group">M4-A 업무평가</div><div class="nav-item" data-target="s3" onclick="show('s3', this)">Task 4사분면</div><div class="nav-group">M4-J 직무평가</div><div class="nav-item" data-target="s6" onclick="show('s6', this)">직무평가 15차원 통계</div><div class="nav-item" data-target="s7" onclick="show('s7', this)">직무 가치 산포 (Grade)</div><div class="nav-item" data-target="s8" onclick="show('s8', this)">Grade × BFM 매트릭스</div><div class="nav-item" data-target="s9" onclick="show('s9', this)">Top · Bottom 직무레벨</div><div class="nav-item" data-target="s11" onclick="show('s11', this)">직급 × 직무레벨 정합성</div><div class="nav-group">HR 활용</div><div class="nav-item" data-target="s10" onclick="show('s10', this)">활용 가이드</div></nav><main class="content">
+<nav class="sidebar"><div class="nav-group">M4 직무업무평가</div><div class="nav-item active" data-target="s1" onclick="show('s1', this)">프레임워크</div><div class="nav-group">M4-A 업무평가</div><div class="nav-item" data-target="s3" onclick="show('s3', this)">Task 4사분면</div><div class="nav-group">M4-J 직무평가</div><div class="nav-item" data-target="s6" onclick="show('s6', this)">직무평가 15차원 통계</div><div class="nav-item" data-target="s7" onclick="show('s7', this)">직무 가치 산포 (Grade)</div><div class="nav-item" data-target="s8" onclick="show('s8', this)">Grade × BFM 매트릭스</div><div class="nav-item" data-target="s9" onclick="show('s9', this)">Top · Bottom 직무레벨</div><div class="nav-item" data-target="s11" onclick="show('s11', this)">직급 × 직무레벨 정합성</div><div class="nav-group">HR 활용</div><div class="nav-item" data-target="s10" onclick="show('s10', this)">활용 가이드</div><div class="nav-group">보상</div><div class="nav-item" data-target="s12" onclick="show('s12', this)">직무등급-보상 input</div></nav><main class="content">
 <section class="slide active" id="s1">
 <div class="mhead"><span class="badge">M4</span><h2>프레임워크</h2></div>
 <div class="caption-row">M4 = <b>직무업무평가</b>. 본질이 다른 두 평가(직무 = 사람 요건·등급 / 업무 = 활동 가치·자동화)를 한 모듈에서 양쪽 산출.</div>
@@ -414,6 +414,16 @@ svg#scatter-grade circle:hover{r:4.5}
 </table>
 </section>
 
+<section class="slide" id="s12">
+<div class="mhead"><span class="badge">M4</span><h2>직무등급-보상 input (직무급)</h2></div>
+<div class="caption-row">보상 영역 · M4-J Grade를 직무급 체계 설계의 input으로 연계</div>
+<div style="margin-top:18px;border:1px dashed var(--border-strong);border-radius:6px;padding:48px 24px;text-align:center;background:var(--muted)">
+<div style="font-size:15px;font-weight:700;color:var(--text-2)">준비 중 · Coming</div>
+<div style="margin-top:8px;font-size:12px;color:var(--text-3)">"직무등급-보상 input (직무급)" 섹션은 신규 개발 예정입니다. 알고리즘은 개발요청서에서 정의합니다.</div>
+<div style="margin-top:14px;font-size:11px;color:var(--text-4)">연관 모듈 M4 Pan HR (직무업무 가치) · HR 영역 보상 · ID PAN-140-20260528</div>
+</div>
+</section>
+
 </main>
 </div>
 <div id="task-popup"></div>
@@ -428,13 +438,14 @@ svg#scatter-grade circle:hover{r:4.5}
 // 탭별 대시보드 ID 배지 코드
 const DASH_CODE = {
   's1':  'PAN-040-20260528',
-  's3':  'PAN-041-20260528',
-  's6':  'PAN-042-20260528',
+  's3':  'PAN-042-20260528',
+  's6':  'PAN-041-20260528',
   's7':  'PAN-043-20260528',
   's8':  'PAN-044-20260528',
   's9':  'PAN-045-20260528',
   's11': 'PAN-046-20260528',
   's10': 'PAN-047-20260528',
+  's12': 'PAN-140-20260528',
 };window.__DASH_CODE=DASH_CODE;window.__setView=function(k){try{show(k);}catch(e){}};;
 function updateDashId(id){
   var el = document.getElementById('dash-id');
@@ -692,21 +703,6 @@ updateDashId('s1');
 .x-ph .sub{font-size:11px;color:#94A3B8;font-style:italic}
 @media (max-width:768px){.x-kpi-strip{grid-template-columns:repeat(2,1fr)}}
 </style>
-
-<div class="x-ext-wrap">
-  <div class="x-ext-hr"></div>
-  
-<section class="x-page" id="PAN-140-20260528">
-  <header class="x-page__h">
-    <div class="x-page__tw">
-      <span class="x-page__area">보상</span>
-      <h2 class="x-page__t">직무등급-보상 input (직무급)</h2>
-    </div>
-    <span class="x-dash-id">PAN-140-20260528</span>
-  </header>
-  <div class="x-page__b"><div class="x-kpi-strip"><div class="x-kpi"><div class="x-kpi__lbl">준비 중</div><div class="x-kpi__val">Coming</div></div><div class="x-kpi"><div class="x-kpi__lbl">연관 모듈</div><div class="x-kpi__val">M4 Pan HR (직무업무 가치)</div></div><div class="x-kpi"><div class="x-kpi__lbl">HR 영역</div><div class="x-kpi__val">보상</div></div><div class="x-kpi"><div class="x-kpi__lbl">ID</div><div class="x-kpi__val">PAN-140-20260528</div></div></div><div class="x-ph"><p>"직무등급-보상 input (직무급)"</p><p class="sub">알고리즘은 개발요청서에서 정의</p></div></div>
-</section>
-</div>
 
 <script data-secjump="1">(function(){function getSec(){var h=(location.hash||"").slice(1);if(h)return h;var m=(location.search||"").match(/[?&]sec=([^&]+)/);return m?decodeURIComponent(m[1]):"";}function norm(s){return String(s).replace(/-20\d{6}.*$/,"");}function jump(){var raw=getSec();if(!raw)return false;var pre=norm(raw);var DC=window.__DASH_CODE||(typeof DASH_CODE!=="undefined"?DASH_CODE:null);var SV=window.__setView||(typeof setLevel==="function"?setLevel:null);if(DC&&SV){for(var k in DC){if(String(DC[k]).indexOf(pre)===0){SV(k);return true;}}return false;}var el=document.getElementById(raw)||document.querySelector("[id^=\""+pre+"\"]");if(el){var p=el.closest(".tab-content");if(p&&p.id&&typeof switchTab==="function"){var n=parseInt(p.id.replace("tab",""),10);if(n)switchTab(n);}setTimeout(function(){try{el.scrollIntoView({block:"start"});}catch(e){}},60);return true;}var cands=document.querySelectorAll(".cn-card,[onclick],.card,.dcard,button");for(var i=0;i<cands.length;i++){var t=cands[i].textContent||"";if(t.indexOf(raw)>=0||t.indexOf(pre)>=0){try{cands[i].click();cands[i].scrollIntoView({block:"start"});}catch(e){}return true;}}return false;}function tryJump(n){if(jump()||n<=0)return;setTimeout(function(){tryJump(n-1);},300);}window.addEventListener("hashchange",function(){tryJump(5);});if(document.readyState==="complete"){setTimeout(function(){tryJump(15);},400);}else{window.addEventListener("load",function(){setTimeout(function(){tryJump(15);},400);});}})();</script>
 </body></html>
